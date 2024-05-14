@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Supermarket.Views
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for Commands.xaml
     /// </summary>
-    public partial class Admin : UserControl
+    public partial class Commands : UserControl
     {
-        public Admin()
+        public Commands()
         {
             InitializeComponent();
-        }
-
-        private void MenuItem_SubmenuOpened(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

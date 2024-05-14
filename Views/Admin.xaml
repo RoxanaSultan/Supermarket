@@ -10,62 +10,46 @@
         <TabControl>
             <!-- Tab for Editing -->
             <TabItem Header="Editing">
-                <StackPanel>
-                    <Menu VerticalAlignment="Top">
-                        <!-- Menu for Users -->
-                        <MenuItem Header="Users">
-                            <MenuItem Header="Add User"/>
-                            <MenuItem Header="Edit User"/>
-                            <MenuItem Header="Delete User"/>
-                            <MenuItem Header="View Users"/>
-                        </MenuItem>
-                        <!-- Menu for Producers -->
-                        <MenuItem Header="Producers">
-                            <MenuItem Header="Add Producer"/>
-                            <MenuItem Header="Edit Producer"/>
-                            <MenuItem Header="Delete Producer"/>
-                            <MenuItem Header="View Producers"/>
-                        </MenuItem>
+                <TabControl>
+                    <TabItem Header="Users">
+                        <StackPanel>
+                            <TextBlock Text="Content for Users" Margin="10"/>
+                            <!-- Add controls for managing users here -->
+                        </StackPanel>
+                    </TabItem>
 
-                        <!-- Menu for Categories -->
-                        <MenuItem Header="Categories">
-                            <MenuItem Header="Add Category"/>
-                            <MenuItem Header="Edit Category"/>
-                            <MenuItem Header="Delete Category"/>
-                            <MenuItem Header="View Categories"/>
-                        </MenuItem>
-                        <MenuItem Header="Products">
-                            <MenuItem Header="Add Product"/>
-                            <MenuItem Header="Edit Product"/>
-                            <MenuItem Header="Delete Product"/>
-                            <MenuItem Header="View Products"/>
-                        </MenuItem>
+                    <TabItem Header="Producers">
+                        <Grid>
+                            <local:Producers/>
+                            <Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                <local:Commands/>
+                            </Border>
+                        </Grid>
+                    </TabItem>
 
-                        <!-- Menu for Stocks -->
-                        <MenuItem Header="Stocks">
-                            <MenuItem Header="Add Stock"/>
-                            <MenuItem Header="Edit Stock"/>
-                            <MenuItem Header="Delete Stock"/>
-                            <MenuItem Header="View Stocks"/>
-                        </MenuItem>
+                    <TabItem Header="Categories">
+                        <StackPanel>
+                            <TextBlock Text="Content for Categories" Margin="10"/>
+                            <!-- Add controls for managing categories here -->
+                        </StackPanel>
+                    </TabItem>
 
-                    </Menu>
+                    <TabItem Header="Products">
+                        <Grid>
+                            <local:Products/>
+                            <Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                <local:Commands/>
+                            </Border>
+                        </Grid>
+                    </TabItem>
 
-                    <!-- Add Button -->
-                    <Button Content="Add" Width="100" Height="40" Margin="5" HorizontalAlignment="Left"
-                    />
-                    <!-- Edit Button -->
-                    <Button Content="Edit" Width="100" Height="40" Margin="5" HorizontalAlignment="Left"
-                    />
-                    <!-- Delete Button -->
-                    <Button Content="Delete" Width="100" Height="40" Margin="5" HorizontalAlignment="Left"
-                    />
-                    <!-- View Button -->
-                    <Button Content="View" Width="100" Height="40" Margin="5" HorizontalAlignment="Left"
-                    />
-
-
-                </StackPanel>
+                    <TabItem Header="Stocks">
+                        <StackPanel>
+                            <TextBlock Text="Content for Stocks" Margin="10"/>
+                            <!-- Add controls for managing stocks here -->
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
             </TabItem>
 
             <!-- Tab for Data Search -->
