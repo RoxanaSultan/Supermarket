@@ -23,5 +23,12 @@ namespace Supermarket.Views
         {
             InitializeComponent();
         }
+
+        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminButton.Visibility = Visibility.Hidden;
+            CashierButton.Visibility = Visibility.Hidden;
+            AdminWindow.Visibility = Visibility.Visible;
+        }
     }
 }
