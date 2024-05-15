@@ -74,6 +74,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\ProducerConvert.cs" />
+    <Compile Include="Converters\ProductConvert.cs" />
+    <Compile Include="Converters\StockConvert.cs" />
     <Compile Include="Helpers\BaseVM.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\BusinessLogicLayer\InventoryBLL.cs" />
@@ -83,40 +85,40 @@
     <Compile Include="Models\BusinessLogicLayer\ReceiptBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="Models\Database\Inventory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Database\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Database\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Database\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Database\Offer.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Database\Producer.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Database\Product.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Database\Receipt.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Database\ReceiptProduct.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\Supermarket.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Supermarket.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\Supermarket.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Supermarket.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Database\Supermarket.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Supermarket.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Database\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Supermarket.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdminVM.cs" />
     <Compile Include="ViewModels\InventoryVM.cs" />
@@ -177,12 +179,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\Database\Model1.edmx">
+    <EntityDeploy Include="Models\Database\Supermarket.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Supermarket.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\Database\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Models\Database\Supermarket.edmx.diagram">
+      <DependentUpon>Supermarket.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -243,15 +245,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\Database\Model1.Context.tt">
+    <Content Include="Models\Database\Supermarket.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Supermarket.edmx</DependentUpon>
+      <LastGenOutput>Supermarket.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Database\Model1.tt">
+    <Content Include="Models\Database\Supermarket.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>Supermarket.edmx</DependentUpon>
+      <LastGenOutput>Supermarket.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
