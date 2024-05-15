@@ -397,13 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-#Database files
-*.edmx
-*.edmx.diagram
-*.tt
-**/*.cs
-
-
 Models/Database
 
 App.config
