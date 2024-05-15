@@ -407,3 +407,5 @@ FodyWeavers.xsd
 Models/Database
 
 App.config
+
+Supermarket.csproj
