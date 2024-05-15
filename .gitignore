@@ -401,3 +401,4 @@ FodyWeavers.xsd
 *.edmx
 *.edmx.diagram
 *.tt
+**/*.cs
