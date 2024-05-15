@@ -16,6 +16,18 @@
         <TextBlock Text="User type" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,30,0,0"/>
         <TextBox x:Name="UserType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
+
+        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
+            <!--<Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource producerConverter}">
+                    <Binding ElementName="txtProducerName" Path="Text"/>
+                    <Binding ElementName="txtProducerCountry" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>-->
+        </Button>
+        <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
         <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
             <DataGrid.Columns>

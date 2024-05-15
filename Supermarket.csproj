@@ -134,9 +134,6 @@
     <Compile Include="Views\CategoriesSearch.xaml.cs">
       <DependentUpon>CategoriesSearch.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Commands.xaml.cs">
-      <DependentUpon>Commands.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -218,10 +215,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CategoriesSearch.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Commands.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
