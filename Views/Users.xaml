@@ -16,7 +16,7 @@
         <TextBlock Text="User type" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,30,0,0"/>
         <TextBox x:Name="UserType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
-        <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
+        <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Username" Binding="{Binding Name}" />

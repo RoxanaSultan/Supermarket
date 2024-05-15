@@ -25,7 +25,7 @@
         <TextBlock Text="Selling price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,90,0,0"/>
         <TextBox x:Name="SellingPrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
-        <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
+        <DataGrid Name="StocksGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Name}" />

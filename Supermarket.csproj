@@ -126,6 +126,12 @@
     <Compile Include="Views\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Categories.xaml.cs">
+      <DependentUpon>Categories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoriesSearch.xaml.cs">
+      <DependentUpon>CategoriesSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Commands.xaml.cs">
       <DependentUpon>Commands.xaml</DependentUpon>
     </Compile>
@@ -135,14 +141,23 @@
     <Compile Include="Views\Producers.xaml.cs">
       <DependentUpon>Producers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProducersSearch.xaml.cs">
+      <DependentUpon>ProducersSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceiptsSearch.xaml.cs">
+      <DependentUpon>ReceiptsSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Stocks.xaml.cs">
       <DependentUpon>Stocks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UsersSearch.xaml.cs">
+      <DependentUpon>UsersSearch.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +200,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Categories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoriesSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Commands.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,7 +220,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ProducersSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Products.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReceiptsSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UsersSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

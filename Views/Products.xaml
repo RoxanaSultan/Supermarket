@@ -19,7 +19,7 @@
         <TextBlock Text="Producer" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,90,0,0"/>
         <TextBox x:Name="Producer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
-        <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
+        <DataGrid Name="ProductsGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />

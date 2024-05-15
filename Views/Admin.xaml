@@ -30,10 +30,7 @@
                     </TabItem>
 
                     <TabItem Header="Categories">
-                        <StackPanel>
-                            <TextBlock Text="Content for Categories" Margin="10"/>
-                            <!-- Add controls for managing categories here -->
-                        </StackPanel>
+                        <local:Categories/>
                     </TabItem>
 
                     <TabItem Header="Products">
@@ -56,31 +53,22 @@
                 </TabControl>
             </TabItem>
 
-            <!-- Tab for Data Search -->
+            <!-- Tab for Data Search -->            
             <TabItem Header="Data Search">
-                <StackPanel>
-                    <Menu VerticalAlignment="Top">
-                        <!-- Menu for Producers -->
-                        <MenuItem Header="Producers">
-
-                        </MenuItem>
-
-                        <!-- Menu for Categories -->
-                        <MenuItem Header="Categories">
-
-                        </MenuItem>
-
-                        <!-- Menu for Users -->
-                        <MenuItem Header="Users">
-
-                        </MenuItem>
-
-                        <!-- Menu for Receipts -->
-                        <MenuItem Header="Receipts">
-
-                        </MenuItem>
-                    </Menu>
-                </StackPanel>
+                <TabControl>
+                    <TabItem Header="Users">
+                        <local:UsersSearch/>
+                    </TabItem>
+                    <TabItem Header="Categories">
+                        <local:CategoriesSearch/>
+                    </TabItem>
+                    <TabItem Header="Producers">
+                        <local:ProducersSearch/>
+                    </TabItem>
+                    <TabItem Header="Receipts">
+                        <local:ReceiptsSearch/>
+                    </TabItem>
+                </TabControl>
             </TabItem>
 
             <!-- Tab for Offers -->
