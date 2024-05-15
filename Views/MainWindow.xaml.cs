@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Supermarket.ViewModels;
 
 namespace Supermarket.Views
 {
@@ -19,9 +20,11 @@ namespace Supermarket.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void AdminButton_Click(object sender, RoutedEventArgs e)

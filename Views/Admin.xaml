@@ -22,10 +22,10 @@
 
                     <TabItem Header="Producers">
                         <Grid>
-                            <local:Producers/>
-                            <Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
-                                <local:Commands/>
-                            </Border>
+                            <local:Producers DataContext="{Binding producerVM}"/>
+                            <!--<Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                <local:Commands DataContext="{Binding producerVM}"/>
+                            </Border>-->
                         </Grid>
                     </TabItem>
 
@@ -37,7 +37,7 @@
                         <Grid>
                             <local:Products/>
                             <Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
-                                <local:Commands/>
+                                <!--<local:Commands DataContext="ProductsVM"/>-->
                             </Border>
                         </Grid>
                     </TabItem>

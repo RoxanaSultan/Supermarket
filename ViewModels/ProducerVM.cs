@@ -15,7 +15,17 @@ namespace Supermarket.ViewModels
     class ProducerVM : BaseVM
     {
         private ProducerBLL producerBLL;
+
         private ObservableCollection<Producer> producers;
+        public ObservableCollection<Producer> Producers
+        {
+            get { return producers; }
+            private set
+            {
+                producers = value;
+                NotifyPropertyChanged(nameof(Producers));
+            }
+        }
         public ProducerVM()
         {
             producerBLL = new ProducerBLL();
@@ -38,12 +48,12 @@ namespace Supermarket.ViewModels
             producerBLL.AddProducer(producer);
             if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
             {
-                producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+                producers.Add(producer);
             }
         }
 
         private ICommand addProducerCommand;
-        public ICommand AddProducerCommand
+        public ICommand AddCommand
         {
             get
             {
@@ -67,7 +77,13 @@ namespace Supermarket.ViewModels
             producerBLL.UpdateProducer(producer);
             if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
             {
-                producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+                // Update the ObservableCollection
+                var existingProducer = Producers.FirstOrDefault(p => p.producer_id == producer.producer_id);
+                if (existingProducer != null)
+                {
+                    var index = Producers.IndexOf(existingProducer);
+                    Producers[index] = producer; // This only works if the collection is bound to UI with bindings that detect changes.
+                }
             }
         }
 
@@ -91,7 +107,7 @@ namespace Supermarket.ViewModels
             producerBLL.DeleteProducer(producer);
             if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
             {
-                producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+                producers.Remove(producer);
             }
         }
 

@@ -22,11 +22,11 @@ namespace Supermarket.Models
             this.ReceiptProducts = new HashSet<ReceiptProduct>();
         }
     
-        public int product_id { get; set; }
         public string name { get; set; }
         public string barcode { get; set; }
         public string category { get; set; }
         public int producer_id { get; set; }
+        public int product_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventories { get; set; }

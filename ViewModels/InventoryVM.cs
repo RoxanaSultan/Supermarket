@@ -16,6 +16,15 @@ namespace Supermarket.ViewModels
     {
         private InventoryBLL inventoryBLL;
         private ObservableCollection<Inventory> inventories;
+        public ObservableCollection<Inventory> Inventories
+        {
+            get { return inventories; }
+            private set
+            {
+                inventories = value;
+                NotifyPropertyChanged(nameof(Inventories));
+            }
+        }
         public InventoryVM()
         {
             inventoryBLL = new InventoryBLL();
@@ -38,7 +47,7 @@ namespace Supermarket.ViewModels
             inventoryBLL.AddInventory(inventory);
             if (string.IsNullOrEmpty(inventoryBLL.ErrorMessage))
             {
-                inventories = new ObservableCollection<Inventory>(inventoryBLL.GetInventories());
+                inventories.Add(inventory);
             }
         }
 
@@ -67,7 +76,13 @@ namespace Supermarket.ViewModels
             inventoryBLL.UpdateInventory(inventory);
             if (string.IsNullOrEmpty(inventoryBLL.ErrorMessage))
             {
-                inventories = new ObservableCollection<Inventory>(inventoryBLL.GetInventories());
+                // Update the ObservableCollection
+                var existingInventory = Inventories.FirstOrDefault(p => p.inventory_id == inventory.inventory_id);
+                if (existingInventory != null)
+                {
+                    var index = Inventories.IndexOf(existingInventory);
+                    Inventories[index] = inventory; // This only works if the collection is bound to UI with bindings that detect changes.
+                }
             }
         }
 

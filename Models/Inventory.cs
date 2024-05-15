@@ -14,7 +14,6 @@ namespace Supermarket.Models
     
     public partial class Inventory
     {
-        public int inventory_id { get; set; }
         public Nullable<int> quantity { get; set; }
         public string measure { get; set; }
         public System.DateTime date_supply { get; set; }
@@ -22,6 +21,7 @@ namespace Supermarket.Models
         public double price_purchase { get; set; }
         public double price_selling { get; set; }
         public int product_id { get; set; }
+        public int inventory_id { get; set; }
     
         public virtual Product Product { get; set; }
     }

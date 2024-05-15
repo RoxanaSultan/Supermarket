@@ -20,9 +20,9 @@ namespace Supermarket.Models
             this.Products = new HashSet<Product>();
         }
     
-        public int producer_id { get; set; }
         public string name { get; set; }
         public string country { get; set; }
+        public int producer_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
