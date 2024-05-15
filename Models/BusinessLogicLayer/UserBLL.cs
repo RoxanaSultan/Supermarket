@@ -10,7 +10,7 @@ namespace Supermarket.Models.BusinessLogicLayer
 {
     public class UserBLL
     {
-        private supermarketEntities2 context = new supermarketEntities2();
+        private supermarketEntities context = new supermarketEntities();
         public string ErrorMessage { get; set; }
         public void AddUser(object obj)
         {

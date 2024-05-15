@@ -9,7 +9,7 @@ namespace Supermarket.Models.BusinessLogicLayer
 {
     public class ReceiptBLL
     {
-        private supermarketEntities2 context = new supermarketEntities2();
+        private supermarketEntities context = new supermarketEntities();
         public string ErrorMessage { get; set; }
         public void AddReceipt(object obj)
         {
