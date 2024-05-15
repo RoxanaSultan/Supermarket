@@ -12,10 +12,12 @@
     </UserControl.Resources>
     <Grid Background="White">
         <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
-        <TextBox x:Name="txtProducerName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="txtProducerName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Country" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
-        <TextBox x:Name="txtProducerCountry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="txtProducerCountry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.country, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Content="Add" Width="100" Height="40" Margin="20,20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
             <Button.CommandParameter>

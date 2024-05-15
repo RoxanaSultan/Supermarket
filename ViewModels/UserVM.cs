@@ -18,6 +18,15 @@ namespace Supermarket.ViewModels
     {
         private UserBLL userBLL;
         private ObservableCollection<User> users;
+        public ObservableCollection<User> Users
+        {
+            get { return users; }
+            private set
+            {
+                users = value;
+                NotifyPropertyChanged(nameof(Users));
+            }
+        }
         public UserVM()
         {
             userBLL = new UserBLL();
@@ -40,7 +49,7 @@ namespace Supermarket.ViewModels
             userBLL.AddUser(user);
             if (string.IsNullOrEmpty(userBLL.ErrorMessage))
             {
-                users = new ObservableCollection<User>(userBLL.GetUsers());
+                users.Add(user);
             }
         }
 
@@ -69,7 +78,13 @@ namespace Supermarket.ViewModels
             userBLL.UpdateUser(user);
             if (string.IsNullOrEmpty(userBLL.ErrorMessage))
             {
-                users = new ObservableCollection<User>(userBLL.GetUsers());
+                // Update the ObservableCollection
+                var existingUser = Users.FirstOrDefault(p => p.user_id == user.user_id);
+                if (existingUser != null)
+                {
+                    var index = Users.IndexOf(existingUser);
+                    Users[index] = user; // This only works if the collection is bound to UI with bindings that detect changes.
+                }
             }
         }
 
@@ -93,7 +108,7 @@ namespace Supermarket.ViewModels
             userBLL.DeleteUser(user);
             if (string.IsNullOrEmpty(userBLL.ErrorMessage))
             {
-                users = new ObservableCollection<User>(userBLL.GetUsers());
+                users.Remove(user);
             }
         }
 

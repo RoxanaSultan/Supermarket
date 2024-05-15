@@ -17,6 +17,15 @@ namespace Supermarket.ViewModels
     {
         private ProductBLL productBLL;
         private ObservableCollection<Product> products;
+        public ObservableCollection<Product> Products
+        {
+            get { return products; }
+            private set
+            {
+                products = value;
+                NotifyPropertyChanged(nameof(Products));
+            }
+        }
         public ProductVM()
         {
             productBLL = new ProductBLL();
@@ -39,7 +48,7 @@ namespace Supermarket.ViewModels
             productBLL.AddProduct(product);
             if (string.IsNullOrEmpty(productBLL.ErrorMessage))
             {
-                products = new ObservableCollection<Product>(productBLL.GetProducts());
+                products.Add(product);
             }
         }
 
@@ -68,7 +77,13 @@ namespace Supermarket.ViewModels
             productBLL.UpdateProduct(product);
             if (string.IsNullOrEmpty(productBLL.ErrorMessage))
             {
-                products = new ObservableCollection<Product>(productBLL.GetProducts());
+                // Update the ObservableCollection
+                var existingProduct = Products.FirstOrDefault(p => p.product_id == product.product_id);
+                if (existingProduct != null)
+                {
+                    var index = Products.IndexOf(existingProduct);
+                    Products[index] = product; // This only works if the collection is bound to UI with bindings that detect changes.
+                }
             }
         }
         private ICommand updateProductCommand;
@@ -92,7 +107,7 @@ namespace Supermarket.ViewModels
             productBLL.DeleteProduct(product);
             if (string.IsNullOrEmpty(productBLL.ErrorMessage))
             {
-                products = new ObservableCollection<Product>(productBLL.GetProducts());
+                products.Remove(product);
             }
         }
         private ICommand deleteProductCommand;

@@ -16,6 +16,15 @@ namespace Supermarket.ViewModels
     {
         private ReceiptBLL receiptBLL;
         private ObservableCollection<Receipt> receipts;
+        public ObservableCollection<Receipt> Receipts
+        {
+            get { return receipts; }
+            private set
+            {
+                receipts = value;
+                NotifyPropertyChanged(nameof(Receipts));
+            }
+        }
         public ReceiptVM()
         {
             receiptBLL = new ReceiptBLL();
@@ -38,7 +47,7 @@ namespace Supermarket.ViewModels
             receiptBLL.AddReceipt(receipt);
             if (string.IsNullOrEmpty(receiptBLL.ErrorMessage))
             {
-                receipts = new ObservableCollection<Receipt>(receiptBLL.GetReceipts());
+                receipts.Add(receipt);
             }
         }
 
@@ -62,7 +71,7 @@ namespace Supermarket.ViewModels
             receiptBLL.DeleteReceipt(receipt);
             if (string.IsNullOrEmpty(receiptBLL.ErrorMessage))
             {
-                receipts = new ObservableCollection<Receipt>(receiptBLL.GetReceipts());
+                receipts.Remove(receipt);
             }
         }
 

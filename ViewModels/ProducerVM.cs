@@ -15,13 +15,21 @@ namespace Supermarket.ViewModels
     class ProducerVM : BaseVM
     {
         private ProducerBLL producerBLL;
-        public List<Producer> Producers
+
+        private ObservableCollection<Producer> producers;
+        public ObservableCollection<Producer> Producers
         {
-            get => producerBLL.GetProducers();
+            get { return producers; }
+            private set
+            {
+                producers = value;
+                NotifyPropertyChanged(nameof(Producers));
+            }
         }
         public ProducerVM()
         {
             producerBLL = new ProducerBLL();
+            producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
         }
 
         public void AddProducer(object obj)
@@ -38,10 +46,10 @@ namespace Supermarket.ViewModels
                 return;
             }
             producerBLL.AddProducer(producer);
-            //if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
-            //{
-            //    producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
-            //}
+            if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
+            {
+                producers.Add(producer);
+            }
         }
 
         private ICommand addProducerCommand;
@@ -67,10 +75,16 @@ namespace Supermarket.ViewModels
                 return;
             }
             producerBLL.UpdateProducer(producer);
-            //if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
-            //{
-            //    producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
-            //}
+            if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
+            {
+                // Update the ObservableCollection
+                var existingProducer = Producers.FirstOrDefault(p => p.producer_id == producer.producer_id);
+                if (existingProducer != null)
+                {
+                    var index = Producers.IndexOf(existingProducer);
+                    Producers[index] = producer; // This only works if the collection is bound to UI with bindings that detect changes.
+                }
+            }
         }
 
         private ICommand updateProducerCommand;
@@ -91,10 +105,10 @@ namespace Supermarket.ViewModels
                 return;
             }
             producerBLL.DeleteProducer(producer);
-            //if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
-            //{
-            //    producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
-            //}
+            if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
+            {
+                producers.Remove(producer);
+            }
         }
 
         private ICommand deleteProducerCommand;

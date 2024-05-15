@@ -17,6 +17,15 @@ namespace Supermarket.ViewModels
     {
         private OfferBLL offerBLL;
         private ObservableCollection<Offer> offers;
+        public ObservableCollection<Offer> Offers
+        {
+            get { return offers; }
+            private set
+            {
+                offers = value;
+                NotifyPropertyChanged(nameof(Offers));
+            }
+        }
         public OfferVM()
         {
             offerBLL = new OfferBLL();
@@ -39,7 +48,7 @@ namespace Supermarket.ViewModels
             offerBLL.AddOffer(offer);
             if (string.IsNullOrEmpty(offerBLL.ErrorMessage))
             {
-                offers = new ObservableCollection<Offer>(offerBLL.GetOffers());
+                offers.Add(offer);
             }
         }
 
@@ -68,7 +77,13 @@ namespace Supermarket.ViewModels
             offerBLL.UpdateOffer(offer);
             if (string.IsNullOrEmpty(offerBLL.ErrorMessage))
             {
-                offers = new ObservableCollection<Offer>(offerBLL.GetOffers());
+                // Update the ObservableCollection
+                var existingOffer = Offers.FirstOrDefault(p => p.offer_id == offer.offer_id);
+                if (existingOffer != null)
+                {
+                    var index = Offers.IndexOf(existingOffer);
+                    Offers[index] = offer; // This only works if the collection is bound to UI with bindings that detect changes.
+                }
             }
         }
 
@@ -92,7 +107,7 @@ namespace Supermarket.ViewModels
             offerBLL.DeleteOffer(offer);
             if (string.IsNullOrEmpty(offerBLL.ErrorMessage))
             {
-                offers = new ObservableCollection<Offer>(offerBLL.GetOffers());
+                offers.Remove(offer);
             }
         }
 
