@@ -13,7 +13,7 @@
                 <TabControl>
                     <TabItem Header="Users">
                         <Grid>
-                            <local:Users/>
+                            <local:Users DataContext="{Binding userVM}"/>
                         </Grid>
                     </TabItem>
 
@@ -29,13 +29,13 @@
 
                     <TabItem Header="Products">
                         <Grid>
-                            <local:Products/>
+                            <local:Products DataContext="{Binding productVM}"/>
                         </Grid>
                     </TabItem>
 
                     <TabItem Header="Inventory">
                         <Grid>
-                            <local:Stocks/>
+                            <local:Stocks DataContext="{Binding inventoryVM}"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

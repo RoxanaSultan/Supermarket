@@ -4,36 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverter="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <localConverter:UserConverter x:Key="userConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <TextBlock Text="Username" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
-        <TextBox x:Name="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
+                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Password" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
-        <TextBox x:Name="PAssword" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.password, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="User type" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,30,0,0"/>
-        <TextBox x:Name="UserType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="UserType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.type, UpdateSourceTrigger=PropertyChanged}"/>
 
 
-        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
-            <!--<Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource producerConverter}">
-                    <Binding ElementName="txtProducerName" Path="Text"/>
-                    <Binding ElementName="txtProducerCountry" Path="Text"/>
+        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddUserCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource userConverter}">
+                    <Binding ElementName="Username" Path="Text"/>
+                    <Binding ElementName="Password" Path="Text"/>
+                    <Binding ElementName="UserType" Path="Text"/>
                 </MultiBinding>
-            </Button.CommandParameter>-->
+            </Button.CommandParameter>
         </Button>
         <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
         <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Username" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Password" Binding="{Binding Address}" />
-                <DataGridTextColumn Header="User type" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Username" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Password" Binding="{Binding password}" />
+                <DataGridTextColumn Header="User type" Binding="{Binding type}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -15,7 +15,7 @@ namespace Supermarket.Models.BusinessLogicLayer
         public void AddUser(object obj)
         {
             User user = obj as User;
-            if (user != null)
+            if (user == null)
             {
                 ErrorMessage = "Invalid input!";
                 return;

@@ -123,12 +123,6 @@ namespace Supermarket.ViewModels
 
         private bool IsValidProduct(Product product)
         {
-            // Validate product ID
-            if (product.product_id <= 0)
-            {
-                productBLL.ErrorMessage = "Product ID must be greater than 0.";
-                return false;
-            }
 
             // Validate name
             if (string.IsNullOrWhiteSpace(product.name))

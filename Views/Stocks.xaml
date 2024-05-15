@@ -4,48 +4,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverters="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <localConverters:StockConverter x:Key="stockConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <TextBlock Text="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="20,30,0,0"/>
-        <TextBox x:Name="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="20,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="20,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Measure" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="20,90,0,0"/>
-        <TextBox x:Name="Measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="20,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="Measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="20,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.measure, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Supply date" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="230,30,0,0"/>
-        <TextBox x:Name="SupplyDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="SupplyDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.date_supply, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Expiration date" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="230,90,0,0"/>
-        <TextBox x:Name="ExpirationDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="ExpirationDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.date_expiration, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Purchase price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,30,0,0"/>
-        <TextBox x:Name="PurchasePrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="PurchasePrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.price_purchase, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Text="Selling price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,90,0,0"/>
-        <TextBox x:Name="SellingPrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBlock Text="Product" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,90,0,0"/>
+        <TextBox x:Name="Product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.product_id, UpdateSourceTrigger=PropertyChanged}"/>
 
 
-        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
-            <!--<Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource producerConverter}">
-                    <Binding ElementName="txtProducerName" Path="Text"/>
-                    <Binding ElementName="txtProducerCountry" Path="Text"/>
+        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddInventoryCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource stockConverter}">
+                    <Binding ElementName="Quantity" Path="Text"/>
+                    <Binding ElementName="Measure" Path="Text"/>
+                    <Binding ElementName="SupplyDate" Path="Text"/>
+                    <Binding ElementName="ExpirationDate" Path="Text"/>
+                    <Binding ElementName="PurchasePrice" Path="Text"/>
+                    <Binding ElementName="Product" Path="Text"/>
                 </MultiBinding>
-            </Button.CommandParameter>-->
+            </Button.CommandParameter>
         </Button>
         <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
         <DataGrid Name="StocksGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Inventories}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Measure" Binding="{Binding Address}" />
-                <DataGridTextColumn Header="Supply date" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Expiration date" Binding="{Binding Address}" />
-                <DataGridTextColumn Header="Purchase price" Binding="{Binding Address}" />
-                <DataGridTextColumn Header="Selling price" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
+                <DataGridTextColumn Header="Measure" Binding="{Binding measure}" />
+                <DataGridTextColumn Header="Supply date" Binding="{Binding date_supply}" />
+                <DataGridTextColumn Header="Expiration date" Binding="{Binding date_expiration}" />
+                <DataGridTextColumn Header="Purchase price" Binding="{Binding price_purchase}" />
+                <DataGridTextColumn Header="Selling price" Binding="{Binding price_selling}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding product_id}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
