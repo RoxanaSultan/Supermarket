@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Supermarket.Models.Database;
 
 namespace Supermarket.Models.BusinessLogicLayer
 {
     public class ProducerBLL
     {
-        private supermarketEntities1 context = new supermarketEntities1();
+        private supermarketEntities2 context = new supermarketEntities2();
         public string ErrorMessage { get; set; }
         public void AddProducer(object obj)
         {

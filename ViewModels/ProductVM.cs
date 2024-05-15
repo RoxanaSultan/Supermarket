@@ -10,6 +10,7 @@ using Supermarket.Models;
 using Supermarket.Views;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Supermarket.Models.Database;
 
 namespace Supermarket.ViewModels
 {

@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Supermarket.Models.Database;
 
 namespace Supermarket.Models.BusinessLogicLayer
 {
     public class UserBLL
     {
-        private supermarketEntities1 context = new supermarketEntities1();
+        private supermarketEntities2 context = new supermarketEntities2();
         public string ErrorMessage { get; set; }
         public void AddUser(object obj)
         {
