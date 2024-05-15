@@ -402,3 +402,6 @@ FodyWeavers.xsd
 *.edmx.diagram
 *.tt
 **/*.cs
+
+
+Models/Database
