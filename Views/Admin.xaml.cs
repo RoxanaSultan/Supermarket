@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Supermarket.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,12 @@ namespace Supermarket.Views
     /// </summary>
     public partial class Admin : UserControl
     {
+        
         public Admin()
         {
             InitializeComponent();
+            this.DataContext = new AdminVM();
         }
 
-        private void MenuItem_SubmenuOpened(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

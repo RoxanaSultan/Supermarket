@@ -4,10 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverter="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="180" d:DesignWidth="140">
+    <UserControl.Resources>
+        <localConverter:ProducerConverter x:Key="producerConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
-        <Button Content="Add" Width="100" Height="40" Margin="20,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Add" Width="100" Height="40" Margin="20,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding AddCommand}">
+            <!--<Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource producerConverter}">
+                    <Binding ElementName="txtProducerName" Path="Text"/>
+                    <Binding ElementName="txtProducerCountry" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>-->
+        </Button>
         <Button Content="Edit" Width="100" Height="40" Margin="20,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button Content="Delete" Width="100" Height="40" Margin="20,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>

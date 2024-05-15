@@ -44,7 +44,7 @@ namespace Supermarket.ViewModels
         }
 
         private ICommand addProductCommand;
-        public ICommand AddProductCommand
+        public ICommand AddCommand
         {
             get
             {

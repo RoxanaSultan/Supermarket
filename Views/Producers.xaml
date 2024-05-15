@@ -4,15 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverter="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <localConverter:ProducerConverter x:Key="producerConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="txtProducerName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
         <TextBlock Text="Country" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
-        <TextBox x:Name="Country" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="txtProducerCountry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
+        <Button Content="Add" Width="100" Height="40" Margin="20,20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource producerConverter}">
+                    <Binding ElementName="txtProducerName" Path="Text"/>
+                    <Binding ElementName="txtProducerCountry" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
         <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
           ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
             <DataGrid.Columns>
