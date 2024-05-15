@@ -12,10 +12,12 @@
             <TabItem Header="Editing">
                 <TabControl>
                     <TabItem Header="Users">
-                        <StackPanel>
-                            <TextBlock Text="Content for Users" Margin="10"/>
-                            <!-- Add controls for managing users here -->
-                        </StackPanel>
+                        <Grid>
+                            <local:Users/>
+                            <Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                <local:Commands/>
+                            </Border>
+                        </Grid>
                     </TabItem>
 
                     <TabItem Header="Producers">
@@ -43,11 +45,13 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Stocks">
-                        <StackPanel>
-                            <TextBlock Text="Content for Stocks" Margin="10"/>
-                            <!-- Add controls for managing stocks here -->
-                        </StackPanel>
+                    <TabItem Header="Inventory">
+                        <Grid>
+                            <local:Stocks/>
+                            <Border Height="180" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                <local:Commands/>
+                            </Border>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </TabItem>

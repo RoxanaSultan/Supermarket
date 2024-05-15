@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Supermarket.Views.Stocks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Supermarket.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <TextBlock Text="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="20,30,0,0"/>
+        <TextBox x:Name="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="20,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+        <TextBlock Text="Measure" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="20,90,0,0"/>
+        <TextBox x:Name="Measure" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="20,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+        <TextBlock Text="Supply date" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="230,30,0,0"/>
+        <TextBox x:Name="SupplyDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+        <TextBlock Text="Expiration date" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="230,90,0,0"/>
+        <TextBox x:Name="ExpirationDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+        <TextBlock Text="Purchase price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,30,0,0"/>
+        <TextBox x:Name="PurchasePrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+        <TextBlock Text="Selling price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,90,0,0"/>
+        <TextBox x:Name="SellingPrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+        <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Measure" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Supply date" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Expiration date" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Purchase price" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Selling price" Binding="{Binding Address}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
