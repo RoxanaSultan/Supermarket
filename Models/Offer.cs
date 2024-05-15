@@ -14,12 +14,12 @@ namespace Supermarket.Models
     
     public partial class Offer
     {
-        public int offer_id { get; set; }
         public string reason { get; set; }
         public int product_id { get; set; }
         public decimal discount { get; set; }
         public System.DateTime date_start { get; set; }
         public System.DateTime date_end { get; set; }
+        public int offer_id { get; set; }
     
         public virtual Product Product { get; set; }
     }

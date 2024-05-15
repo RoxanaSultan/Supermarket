@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="supermarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="supermarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="inventory_id" />
@@ -180,7 +180,8 @@
             <End Role="ReceiptProduct" EntitySet="ReceiptProduct" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="supermarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -188,7 +189,6 @@
           <Key>
             <PropertyRef Name="inventory_id" />
           </Key>
-          <Property Name="inventory_id" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" />
           <Property Name="measure" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="date_supply" Type="DateTime" Nullable="false" Precision="0" />
@@ -196,38 +196,39 @@
           <Property Name="price_purchase" Type="Double" Nullable="false" />
           <Property Name="price_selling" Type="Double" Nullable="false" />
           <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="inventory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
         </EntityType>
         <EntityType Name="Offer">
           <Key>
             <PropertyRef Name="offer_id" />
           </Key>
-          <Property Name="offer_id" Type="Int32" Nullable="false" />
           <Property Name="reason" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="product_id" Type="Int32" Nullable="false" />
           <Property Name="discount" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="date_start" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="date_end" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="offer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Offer_Product" FromRole="Offer" ToRole="Product" />
         </EntityType>
         <EntityType Name="Producer">
           <Key>
             <PropertyRef Name="producer_id" />
           </Key>
-          <Property Name="producer_id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="producer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_Producer" FromRole="Producer" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="barcode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="category" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="producer_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
           <NavigationProperty Name="Offers" Relationship="Self.FK_Offer_Product" FromRole="Product" ToRole="Offer" />
           <NavigationProperty Name="Producer" Relationship="Self.FK_Product_Producer" FromRole="Product" ToRole="Producer" />
@@ -237,29 +238,17 @@
           <Key>
             <PropertyRef Name="receipt_id" />
           </Key>
-          <Property Name="receipt_id" Type="Int32" Nullable="false" />
           <Property Name="date_issue" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cashier_id" Type="Int32" Nullable="false" />
           <Property Name="total_price" Type="Double" Nullable="false" />
+          <Property Name="receipt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="Self.FK_Receipt_User" FromRole="Receipt" ToRole="User" />
           <NavigationProperty Name="ReceiptProducts" Relationship="Self.FK_ReceiptProduct_Receipt" FromRole="Receipt" ToRole="ReceiptProduct" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="type" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Receipts" Relationship="Self.FK_Receipt_User" FromRole="User" ToRole="Receipt" />
         </EntityType>
         <EntityType Name="ReceiptProduct">
           <Key>
             <PropertyRef Name="receipt_id" />
             <PropertyRef Name="product_id" />
-            <PropertyRef Name="quantity" />
-            <PropertyRef Name="price" />
           </Key>
           <Property Name="receipt_id" Type="Int32" Nullable="false" />
           <Property Name="product_id" Type="Int32" Nullable="false" />
@@ -267,6 +256,16 @@
           <Property Name="price" Type="Double" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_ReceiptProduct_Product" FromRole="ReceiptProduct" ToRole="Product" />
           <NavigationProperty Name="Receipt" Relationship="Self.FK_ReceiptProduct_Receipt" FromRole="ReceiptProduct" ToRole="Receipt" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Receipts" Relationship="Self.FK_Receipt_User" FromRole="User" ToRole="Receipt" />
         </EntityType>
         <Association Name="FK_Inventory_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
@@ -340,14 +339,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="supermarketEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="supermarketEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="Offers" EntityType="Self.Offer" />
           <EntitySet Name="Producers" EntityType="Self.Producer" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Receipts" EntityType="Self.Receipt" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="ReceiptProducts" EntityType="Self.ReceiptProduct" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="Inventory" EntitySet="Inventories" />
@@ -378,11 +377,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="supermarketModelStoreContainer" CdmEntityContainer="supermarketEntities">
+        <EntityContainerMapping StorageEntityContainer="supermarketModelStoreContainer" CdmEntityContainer="supermarketEntities1">
           <EntitySetMapping Name="Inventories">
             <EntityTypeMapping TypeName="supermarketModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="measure" ColumnName="measure" />
                 <ScalarProperty Name="date_supply" ColumnName="date_supply" />
@@ -390,58 +388,49 @@
                 <ScalarProperty Name="price_purchase" ColumnName="price_purchase" />
                 <ScalarProperty Name="price_selling" ColumnName="price_selling" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Offers">
             <EntityTypeMapping TypeName="supermarketModel.Offer">
               <MappingFragment StoreEntitySet="Offer">
-                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
                 <ScalarProperty Name="reason" ColumnName="reason" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="discount" ColumnName="discount" />
                 <ScalarProperty Name="date_start" ColumnName="date_start" />
                 <ScalarProperty Name="date_end" ColumnName="date_end" />
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producers">
             <EntityTypeMapping TypeName="supermarketModel.Producer">
               <MappingFragment StoreEntitySet="Producer">
-                <ScalarProperty Name="producer_id" ColumnName="producer_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="producer_id" ColumnName="producer_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="supermarketModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="barcode" ColumnName="barcode" />
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="producer_id" ColumnName="producer_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Receipts">
             <EntityTypeMapping TypeName="supermarketModel.Receipt">
               <MappingFragment StoreEntitySet="Receipt">
-                <ScalarProperty Name="receipt_id" ColumnName="receipt_id" />
                 <ScalarProperty Name="date_issue" ColumnName="date_issue" />
                 <ScalarProperty Name="cashier_id" ColumnName="cashier_id" />
                 <ScalarProperty Name="total_price" ColumnName="total_price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="supermarketModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="receipt_id" ColumnName="receipt_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -452,6 +441,16 @@
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="supermarketModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

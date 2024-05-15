@@ -26,10 +26,10 @@
             </Button.CommandParameter>
         </Button>
         <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
-          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
+          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Country" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Country" Binding="{Binding country}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

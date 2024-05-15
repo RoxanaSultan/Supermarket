@@ -11,14 +11,10 @@ namespace Supermarket.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class ReceiptProduct
     {
-        [Key, Column(Order = 0)]
         public int receipt_id { get; set; }
-        [Key, Column(Order = 1)]
         public int product_id { get; set; }
         public double quantity { get; set; }
         public double price { get; set; }

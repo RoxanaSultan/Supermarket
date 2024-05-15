@@ -8,7 +8,7 @@ namespace Supermarket.Models.BusinessLogicLayer
 {
     public class InventoryBLL
     {
-        private supermarketEntities context = new supermarketEntities();
+        private supermarketEntities1 context = new supermarketEntities1();
         public string ErrorMessage { get; set; }
         public void AddInventory(object obj)
         {

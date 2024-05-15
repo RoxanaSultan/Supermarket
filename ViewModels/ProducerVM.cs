@@ -15,11 +15,13 @@ namespace Supermarket.ViewModels
     class ProducerVM : BaseVM
     {
         private ProducerBLL producerBLL;
-        private ObservableCollection<Producer> producers;
+        public List<Producer> Producers
+        {
+            get => producerBLL.GetProducers();
+        }
         public ProducerVM()
         {
             producerBLL = new ProducerBLL();
-            producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
         }
 
         public void AddProducer(object obj)
@@ -36,10 +38,10 @@ namespace Supermarket.ViewModels
                 return;
             }
             producerBLL.AddProducer(producer);
-            if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
-            {
-                producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
-            }
+            //if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
+            //{
+            //    producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+            //}
         }
 
         private ICommand addProducerCommand;
@@ -65,10 +67,10 @@ namespace Supermarket.ViewModels
                 return;
             }
             producerBLL.UpdateProducer(producer);
-            if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
-            {
-                producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
-            }
+            //if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
+            //{
+            //    producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+            //}
         }
 
         private ICommand updateProducerCommand;
@@ -89,10 +91,10 @@ namespace Supermarket.ViewModels
                 return;
             }
             producerBLL.DeleteProducer(producer);
-            if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
-            {
-                producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
-            }
+            //if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
+            //{
+            //    producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+            //}
         }
 
         private ICommand deleteProducerCommand;

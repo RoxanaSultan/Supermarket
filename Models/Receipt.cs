@@ -20,10 +20,10 @@ namespace Supermarket.Models
             this.ReceiptProducts = new HashSet<ReceiptProduct>();
         }
     
-        public int receipt_id { get; set; }
         public System.DateTime date_issue { get; set; }
         public int cashier_id { get; set; }
         public double total_price { get; set; }
+        public int receipt_id { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
