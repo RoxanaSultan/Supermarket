@@ -48,8 +48,10 @@
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
-        <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding UpdateInventoryCommand}"
+            CommandParameter="{Binding ElementName=StocksGrid, Path=SelectedItem}"/>
+        <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding DeleteInventoryCommand}"
+                CommandParameter="{Binding ElementName=StocksGrid, Path=SelectedItem}"/>
 
         <DataGrid Name="StocksGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Inventories}">
@@ -60,7 +62,7 @@
                 <DataGridTextColumn Header="Expiration date" Binding="{Binding date_expiration}" />
                 <DataGridTextColumn Header="Purchase price" Binding="{Binding price_purchase}" />
                 <DataGridTextColumn Header="Selling price" Binding="{Binding price_selling}" />
-                <DataGridTextColumn Header="Product" Binding="{Binding product_id}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -37,9 +37,9 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Product not found!";
                 return;
             }
-            oldProduct.name = product.name;
-            oldProduct.barcode = product.barcode;
-            oldProduct.category = product.category;
+            oldProduct.name = product.name.Substring(0, 10);
+            oldProduct.barcode = product.barcode.Substring(0,10);
+            oldProduct.category = product.category.Substring(0,15);
             oldProduct.producer_id = product.producer_id;
             context.SaveChanges();
         }

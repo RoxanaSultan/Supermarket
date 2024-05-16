@@ -41,7 +41,7 @@ namespace Supermarket.Models.BusinessLogicLayer
             oldOffer.discount = offer.discount;
             oldOffer.date_start = offer.date_start;
             oldOffer.date_end = offer.date_end;
-            oldOffer.reason = offer.reason;
+            oldOffer.reason = offer.reason.Substring(0, 50);
             offer.Product = context.Products.FirstOrDefault(p => p.product_id == offer.product_id);
             context.SaveChanges();
         }

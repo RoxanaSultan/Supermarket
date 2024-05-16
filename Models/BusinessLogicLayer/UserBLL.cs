@@ -38,9 +38,9 @@ namespace Supermarket.Models.BusinessLogicLayer
                ErrorMessage = "User not found!";
                 return;
             }
-            oldUser.name = user.name;
-            oldUser.password = user.password;
-            oldUser.type = user.type;
+            oldUser.name = user.name.Substring(0, 20);
+            oldUser.password = user.password.Substring(0, 10);
+            oldUser.type = user.type.Substring(0, 15);
             context.SaveChanges();
         }
 

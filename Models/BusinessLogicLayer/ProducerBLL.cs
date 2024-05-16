@@ -37,8 +37,8 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Producer not found!";
                 return;
             }
-            oldProducer.name = producer.name;
-            oldProducer.country = producer.country;
+            oldProducer.name = producer.name.Substring(0,15);
+            oldProducer.country = producer.country.Substring(0,15);
             context.SaveChanges();
         }
 
