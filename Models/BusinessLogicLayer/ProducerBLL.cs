@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using Supermarket.Models.Database;
@@ -72,6 +73,10 @@ namespace Supermarket.Models.BusinessLogicLayer
         public Producer GetProducer(string name)
         {
             return context.Producers.FirstOrDefault(p => p.name == name);
+        }
+        public List<GetProductsFromProducers_Result> GetProductsFromProducers(int id)
+        {
+            return context.GetProductsFromProducers(id).ToList();
         }
     }
 }
