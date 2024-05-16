@@ -23,8 +23,8 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Categories">
-                        <local:Categories/>
+                    <TabItem Header="Categories" >
+                        <local:Categories DataContext="{Binding productVM}"/>
                     </TabItem>
 
                     <TabItem Header="Products">

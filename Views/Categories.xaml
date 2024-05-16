@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverter="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <localConverter:CategoriesConverter x:Key="CategoriesConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -14,10 +18,17 @@
         </Grid.RowDefinitions>
         <!-- Header -->
         <TextBlock Text="Categories" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <ListBox ItemsSource="{Binding Categories}" SelectionMode="Single"/>
+        <ScrollViewer x:Name="CategoriesList" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <ListBox ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"/>
         </ScrollViewer>
         <TextBox x:Name="NewCategory" Grid.Row="2" Height="30" Width="300" HorizontalAlignment="Left" Margin="150,0,0,0"/>
-        <Button Content="Modify" Grid.Row="2" Height="30" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Command="{Binding UpdateCategories}"/>
+        <Button Content="Modify" Grid.Row="2" Height="30" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Command="{Binding UpdateCategoriesCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource CategoriesConverter}">
+                    <Binding ElementName="CategoriesList" Path="Content.SelectedItem"/>
+                    <Binding ElementName="NewCategory" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
     </Grid>
 </UserControl>

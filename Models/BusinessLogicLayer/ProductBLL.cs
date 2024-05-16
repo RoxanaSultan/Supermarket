@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,9 +38,9 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Product not found!";
                 return;
             }
-            oldProduct.name = product.name.Substring(0, 10);
-            oldProduct.barcode = product.barcode.Substring(0,10);
-            oldProduct.category = product.category.Substring(0,15);
+            oldProduct.name = product.name.Substring(0, Math.Min(product.name.Length, 10));
+            oldProduct.barcode = product.barcode.Substring(0, Math.Min(product.barcode.Length, 10));
+            oldProduct.category = product.category.Substring(0, Math.Min(product.category.Length, 15));
             oldProduct.producer_id = product.producer_id;
             context.SaveChanges();
         }
@@ -64,7 +65,26 @@ namespace Supermarket.Models.BusinessLogicLayer
 
         public List<Product> GetProducts()
         {
-            return context.Products.ToList();
+            List<GetProducts_Result> results = context.GetProducts().ToList(); // Assuming this method retrieves data from the database
+
+            List<Product> products = new List<Product>();
+            foreach (var result in results)
+            {
+                // Convert GetProducts_Result objects to Product objects
+                Product product = new Product
+                {
+                    // Assign properties based on data from GetProducts_Result
+                    product_id = result.product_id,
+                    name = result.name,
+                    barcode = result.barcode,
+                    category = result.category,
+                    producer_id = result.producer_id
+                    // Add other properties as needed
+                };
+                products.Add(product);
+            }
+            return products;
+            //return context.Products.ToList();
         }
 
         public List<Product> GetProductsByCategory(string category)
@@ -85,6 +105,16 @@ namespace Supermarket.Models.BusinessLogicLayer
         public void UpdateCategories(string oldCategory, string newCategory)
         {
             context.UpdateCategories(oldCategory, newCategory);
+            context.SaveChanges();
+        }
+
+        public List<string> GetCategories()
+        {
+            return context.GetCategories().ToList();
+        }
+        public ObservableCollection<string> GetCategoriesObservable()
+        {
+            return new ObservableCollection<string>(context.GetCategories().ToList());
         }
     }
 }

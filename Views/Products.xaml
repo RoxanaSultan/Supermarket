@@ -44,7 +44,7 @@
                 CommandParameter="{Binding ElementName=ProductsGrid, Path=SelectedItem}"/>
 
         <DataGrid Name="ProductsGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products}">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding name}" />
                 <DataGridTextColumn Header="Barcode" Binding="{Binding barcode}" />
