@@ -7,21 +7,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <DataGrid Name="ProducersSearchGrid" AutoGenerateColumns="False"
-          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}" Height="210" VerticalAlignment="Top">
+          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}" Height="210" VerticalAlignment="Top" Grid.Row="0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Country" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Country" Binding="{Binding country}" />
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="ProductsProducersSearchGrid" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}" Height="210" VerticalAlignment="Bottom" Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Barcode" Binding="{Binding Address}" />
-                <DataGridTextColumn Header="Category" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Producer" Binding="{Binding Address}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <Button Content="Search" Command="{Binding SearchCommand}" Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Center">
+            <Button.CommandParameter>
+                <Binding ElementName="ProducersSearchGrid" Path="SelectedItem.producer_id" />
+            </Button.CommandParameter>
+        </Button>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+            <ListView ItemsSource="{Binding OrderedProductsByCategory}">
+                <ListView.View>
+                    <GridView>
+                        <!-- Column 1: Category -->
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="100" />
+
+                        <!-- Column 2: Product from Category -->
+                        <GridViewColumn Header="Category" DisplayMemberBinding="{Binding category}" Width="150" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

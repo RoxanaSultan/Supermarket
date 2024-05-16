@@ -26,12 +26,37 @@ namespace Supermarket.Views
             InitializeComponent();
 
         }
-
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
-            AdminButton.Visibility = Visibility.Hidden;
-            CashierButton.Visibility = Visibility.Hidden;
-            AdminWindow.Visibility = Visibility.Visible;
+            LoginWindow loginWindow = new LoginWindow("cde");
+            bool? result = loginWindow.ShowDialog();
+
+            if (result == true)
+            {
+                // If login is successful, you can proceed to show the admin window or do other tasks
+                AdminButton.Visibility = Visibility.Hidden;
+                CashierButton.Visibility = Visibility.Hidden;
+                AdminWindow.Visibility = Visibility.Visible;
+            }
         }
+
+        private void CashierButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow("cashier");
+            bool? result = loginWindow.ShowDialog();
+
+            if (result == true)
+            {
+                // If login is successful, you can proceed to show the cashier window or do other tasks
+                // Example: CashierWindow.Visibility = Visibility.Visible;
+            }
+        }
+
+        //private void AdminButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AdminButton.Visibility = Visibility.Hidden;
+        //    CashierButton.Visibility = Visibility.Hidden;
+        //    AdminWindow.Visibility = Visibility.Visible;
+        //}
     }
 }

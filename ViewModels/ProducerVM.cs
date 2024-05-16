@@ -27,10 +27,24 @@ namespace Supermarket.ViewModels
                 NotifyPropertyChanged(nameof(Producers));
             }
         }
+        private ObservableCollection<Product> orderedProductsByCategory;
+
+        public ObservableCollection<Product> OrderedProductsByCategory
+        {
+            get { return orderedProductsByCategory; }
+            private set
+            {
+                orderedProductsByCategory = value;
+                NotifyPropertyChanged(nameof(OrderedProductsByCategory));
+            }
+        }
+
+        private int selectedProducerId;
         public ProducerVM()
         {
             producerBLL = new ProducerBLL();
             producers = new ObservableCollection<Producer>(producerBLL.GetProducers());
+            orderedProductsByCategory = new ObservableCollection<Product>();
         }
 
         public void AddProducer(object obj)
@@ -136,6 +150,33 @@ namespace Supermarket.ViewModels
                 return false;
             }
             return true;
+        }
+
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(SearchProductsByCategory);
+            }
+        }
+
+        public void SearchProductsByCategory(object obj)
+        {
+            int producerId = obj as int? ?? 0;
+            if (producerId == 0)
+            {
+                producerBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+            selectedProducerId = producerId;
+            var products = producerBLL.GetProductsFromProducers(producerId);
+            orderedProductsByCategory.Clear();
+            foreach (var product in products)
+            {
+                orderedProductsByCategory.Add(product);
+            }
+            NotifyPropertyChanged(nameof(OrderedProductsByCategory));
+
         }
     }
 }

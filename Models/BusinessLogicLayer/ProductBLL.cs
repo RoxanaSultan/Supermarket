@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using Supermarket.Models.Database;
@@ -78,7 +79,8 @@ namespace Supermarket.Models.BusinessLogicLayer
                     name = result.name,
                     barcode = result.barcode,
                     category = result.category,
-                    producer_id = result.producer_id
+                    producer_id = result.producer_id,
+                    Producer = GetProducerById(result.producer_id)
                     // Add other properties as needed
                 };
                 products.Add(product);
@@ -116,5 +118,22 @@ namespace Supermarket.Models.BusinessLogicLayer
         {
             return new ObservableCollection<string>(context.GetCategories().ToList());
         }
-    }
+        public Producer GetProducerById(int producerId)
+        {  
+            // Query the database using LINQ to Entities to find the Producer by ID
+            return context.Producers.FirstOrDefault(p => p.producer_id == producerId);
+        }
+
+        public decimal GetCategoryProfit(string category)
+        {
+            decimal profit = 0;
+            List<Product> products = context.Products.Where(p => p.category == category).ToList();
+            foreach (var product in products)
+            {
+                profit += 1;
+            }
+            return profit;
+        }
+
+}
 }

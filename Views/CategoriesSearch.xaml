@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <DataGrid Name="CategoriesGrid" AutoGenerateColumns="False" Width="500" Height="400"
-          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
+          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding CategoriesProfit}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Category" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Profit" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}" />
+                <DataGridTextColumn Header="Profit" Binding="{Binding Profit}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

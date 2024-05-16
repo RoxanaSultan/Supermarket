@@ -48,10 +48,10 @@
                         <local:UsersSearch/>
                     </TabItem>
                     <TabItem Header="Categories">
-                        <local:CategoriesSearch/>
+                        <local:CategoriesSearch DataContext="{Binding productVM}"/>
                     </TabItem>
                     <TabItem Header="Producers">
-                        <local:ProducersSearch/>
+                        <local:ProducersSearch DataContext="{Binding producerVM}"/>
                     </TabItem>
                     <TabItem Header="Receipts">
                         <local:ReceiptsSearch/>

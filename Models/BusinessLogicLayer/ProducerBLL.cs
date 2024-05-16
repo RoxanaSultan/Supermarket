@@ -74,9 +74,26 @@ namespace Supermarket.Models.BusinessLogicLayer
         {
             return context.Producers.FirstOrDefault(p => p.name == name);
         }
-        public List<GetProductsFromProducers_Result> GetProductsFromProducers(int id)
+        public List<Product> GetProductsFromProducers(int id)
         {
-            return context.GetProductsFromProducers(id).ToList();
+            var products = new List<Product>();
+
+            var results = context.GetProductsFromProducers(id).ToList();
+
+            foreach (var result in results)
+            {
+                // Map GetProductsFromProducers_Result to Product
+                var product = new Product
+                {
+                    name = result.name,
+                    category = result.category
+                    // Map other properties as needed
+                };
+
+                products.Add(product);
+            }
+
+            return products;
         }
     }
 }

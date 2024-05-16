@@ -41,6 +41,29 @@ namespace Supermarket.ViewModels
                 NotifyPropertyChanged(nameof(Categories));
             }
         }
+
+        private ObservableCollection<CategoryProfit> categoriesProfit;
+        public ObservableCollection<CategoryProfit> CategoriesProfit
+        {
+            get { 
+                ObservableCollection<CategoryProfit> categoriesProfit = new ObservableCollection<CategoryProfit>();
+                foreach (var category in Categories)
+                {
+                    decimal profit = productBLL.GetCategoryProfit(category);
+                    categoriesProfit.Add(new CategoryProfit
+                    {
+                        Category = category,
+                        Profit = profit
+                    });
+                }
+                return categoriesProfit; }
+            private set
+            {
+                categoriesProfit = value;
+                NotifyPropertyChanged(nameof(CategoriesProfit));
+            }
+        }
+       
         public ProductVM()
         {
             productBLL = new ProductBLL();
@@ -301,5 +324,10 @@ namespace Supermarket.ViewModels
             // Logic to update the existing product with the data from the new product
         }
 
+    }
+    public class CategoryProfit
+    {
+        public string Category { get; set; }
+        public decimal Profit { get; set; }
     }
 }
