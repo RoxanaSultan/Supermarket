@@ -10,11 +10,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <!-- Header -->
         <TextBlock Text="Categories" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
-
-        <!-- List of categories -->
-        <ListBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" Width="200" Grid.Row="1"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <ListBox ItemsSource="{Binding Categories}" SelectionMode="Single"/>
+        </ScrollViewer>
+        <TextBox x:Name="NewCategory" Grid.Row="2" Height="30" Width="300" HorizontalAlignment="Left" Margin="150,0,0,0"/>
+        <Button Content="Modify" Grid.Row="2" Height="30" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Command="{Binding UpdateCategories}"/>
     </Grid>
 </UserControl>

@@ -27,6 +27,17 @@ namespace Supermarket.ViewModels
                 NotifyPropertyChanged(nameof(Products));
             }
         }
+
+        private HashSet<string> categories;
+        public HashSet<string> Categories
+        {
+            get { return categories; }
+            private set
+            {
+                categories = value;
+                NotifyPropertyChanged(nameof(Categories));
+            }
+        }
         public ProductVM()
         {
             productBLL = new ProductBLL();
@@ -153,6 +164,11 @@ namespace Supermarket.ViewModels
             }
 
             return true; // All validations passed
+        }
+
+        public void UpdateCategories(string oldCategory, string newCategory)
+        {
+            productBLL.UpdateCategories(oldCategory, newCategory);
         }
 
     }

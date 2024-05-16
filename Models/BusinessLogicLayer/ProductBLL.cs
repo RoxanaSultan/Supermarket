@@ -81,5 +81,10 @@ namespace Supermarket.Models.BusinessLogicLayer
         {
             return context.Products.FirstOrDefault(p => p.barcode == barcode);
         }
+
+        public void UpdateCategories(string oldCategory, string newCategory)
+        {
+            context.UpdateCategories(oldCategory, newCategory);
+        }
     }
 }
