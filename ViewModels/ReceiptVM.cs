@@ -37,6 +37,18 @@ namespace Supermarket.ViewModels
             }
         }
 
+        private Dictionary<int, int> productsInReceipt;
+
+        private List<string> receipt;
+        public List<string> Receipt
+        {
+            get { return receipt; }
+            set
+            {
+                receipt = value;
+                NotifyPropertyChanged(nameof(Receipt));
+            }
+        }
         public ReceiptVM()
         {
             receiptBLL = new ReceiptBLL();
@@ -208,6 +220,57 @@ namespace Supermarket.ViewModels
                     break;
             }
             NotifyPropertyChanged(nameof(Receipts));
+        }
+
+        private ICommand addInReceipt;
+        public ICommand AddInReceipt
+        {
+            get
+            {
+                return addInReceipt ?? (addInReceipt = new RelayCommand(AddProductInReceipt));
+            }
+        }
+
+        private void AddProductInReceipt(object obj)
+        {
+            int product_id = Convert.ToInt32(obj);
+            if(product_id == 0)
+            {
+                receiptBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+            if(productsInReceipt.ContainsKey(product_id))
+            {
+                productsInReceipt[product_id]++;
+            }
+            else
+            {
+                productsInReceipt.Add(product_id, 1);
+            }
+            
+        }
+
+        private ICommand totalReceipt;
+        public ICommand TotalReceipt
+        {
+            get
+            {
+                return totalReceipt ?? (totalReceipt = new RelayCommand(TotalReceiptPrice));
+            }
+        }
+        private void TotalReceiptPrice(object obj)
+        {
+            foreach(var product in productsInReceipt)
+            {
+
+                Product p = products.FirstOrDefault(pr => pr.product_id == product.Key);
+                decimal price = 30;
+                if(p != null)
+                {
+                    receipt.Add(product.Value + " X " + p.name + " .....  " + price * product.Value + "lei");
+                }
+            }
+            receipt.Add("Total: " + receipt.Sum(r => Convert.ToDecimal(r.Substring(r.LastIndexOf(".....") + 5, r.LastIndexOf("lei") - r.LastIndexOf(".....") - 5))) + "lei");
         }
 
     }
