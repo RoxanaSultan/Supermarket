@@ -4,15 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverters="clr-namespace:Supermarket.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <localConverters:DayProfitConverter x:Key="DayProfitConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <DataGrid Name="UsersGrid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="225" Width="500" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Username" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Password" Binding="{Binding Address}" />
-                <DataGridTextColumn Header="User type" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}" />
+                <DataGridTextColumn Header="User type" Binding="{Binding Type}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -33,11 +37,21 @@
             <ComboBoxItem Content="December"/>
         </ComboBox>
 
+        <Button Content="Search" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,40,10,0" 
+        Command="{Binding GetDayProfitCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource DayProfitConverter}">
+                    <Binding ElementName="UsersGrid" Path="SelectedItem.user_id"/>
+                    <Binding ElementName="Months" Path="SelectedItem"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+
         <DataGrid Name="ProfitGrid" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="225" Width="500" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding PersonsList}" Visibility="Hidden">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding DayProfit}" Visibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Profit" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                <DataGridTextColumn Header="Profit" Binding="{Binding Profit}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
