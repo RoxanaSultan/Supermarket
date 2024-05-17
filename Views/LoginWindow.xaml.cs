@@ -22,6 +22,7 @@ namespace Supermarket.Views
     {
         LoginVM loginVM;
         string _type;
+        public string username;
         public LoginWindow(string type)
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace Supermarket.Views
         }
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtUsername.Text;
+            username = txtUsername.Text;
             string password = txtPassword.Password;
             if(loginVM.ableToLogin(username,password, _type))
             {

@@ -15,8 +15,15 @@ namespace Supermarket.ViewModels
 
         public MainVM()
         {
+            LoadAdminVM();
+        } 
+        public void LoadAdminVM()
+        {
             adminVM = new AdminVM();
-            receiptVM = new ReceiptVM();
-        }   
+        }
+        public void LoadReceiptVM(string user)
+        {
+            receiptVM = new ReceiptVM(user);
+        }
     }
 }

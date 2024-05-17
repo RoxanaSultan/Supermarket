@@ -51,11 +51,14 @@ namespace Supermarket.ViewModels
                 NotifyPropertyChanged(nameof(Receipt));
             }
         }
-        public ReceiptVM()
+
+        private string user;
+        public ReceiptVM(string user)
         {
             receiptBLL = new ReceiptBLL();
             receipts = new ObservableCollection<Receipt>(receiptBLL.GetReceipts());
             receipt = new ObservableCollection<string>();
+            this.user = user;
         }
 
         public void AddReceipt(object obj)
@@ -119,13 +122,13 @@ namespace Supermarket.ViewModels
             }
 
             // Validate receipt ID (assuming it must be a positive integer)
-            if (receipt.receipt_id <= 0)
+            if (receipt.receipt_id < 0)
             {
                 return false;
             }
 
             // Validate date of issue (assuming it cannot be a future date)
-            if (receipt.date_issue > DateTime.Now)
+            if (receipt.date_issue >= DateTime.Now)
             {
                 return false;
             }
@@ -281,6 +284,16 @@ namespace Supermarket.ViewModels
             }
             receipt.Add("Total: " + receipt.Sum(r => Convert.ToDecimal(r.Substring(r.LastIndexOf(".....") + 5, r.LastIndexOf("lei") - r.LastIndexOf(".....") - 5))) + "lei");
             NotifyPropertyChanged(nameof(Receipt));
+
+
+            AddReceipt( new Receipt
+            {
+                date_issue = DateTime.Now,
+                cashier_id = receiptBLL.getUserId(user),
+                total_price = Convert.ToDouble(receipt.Last().Substring(receipt.Last().LastIndexOf(" ") + 1, receipt.Last().LastIndexOf("lei") - receipt.Last().LastIndexOf(" ") - 1)),
+                User = receiptBLL.GetUser(user)
+             
+            });
         }
 
     }

@@ -20,40 +20,48 @@ namespace Supermarket.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        string user = "";
+        MainVM mainVM;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainVM();
             
 
         }
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
-            //LoginWindow loginWindow = new LoginWindow("cde");
-            //bool? result = loginWindow.ShowDialog();
+            LoginWindow loginWindow = new LoginWindow("cde");
+            bool? result = loginWindow.ShowDialog();
 
-            //if (result == true)
+            if (result == true)
             {
                 // If login is successful, you can proceed to show the admin window or do other tasks
                 AdminButton.Visibility = Visibility.Hidden;
                 CashierButton.Visibility = Visibility.Hidden;
                 AdminWindow.Visibility = Visibility.Visible;
+                mainVM = new MainVM();
+                DataContext = mainVM;
             }
+
         }
 
         private void CashierButton_Click(object sender, RoutedEventArgs e)
         {
-            //LoginWindow loginWindow = new LoginWindow("cashier");
-            //bool? result = loginWindow.ShowDialog();
+            LoginWindow loginWindow = new LoginWindow("cashier");
+            bool? result = loginWindow.ShowDialog();
 
-            //if (result == true)
+            if (result == true)
             {
                 // If login is successful, you can proceed to show the cashier window or do other tasks
                 // Example: CashierWindow.Visibility = Visibility.Visible;
                 AdminButton.Visibility = Visibility.Hidden;
                 CashierButton.Visibility = Visibility.Hidden;
                 CashierWindow.Visibility = Visibility.Visible;
+                user = loginWindow.username;
+                mainVM = new MainVM();
+                mainVM.LoadReceiptVM(user);
+                DataContext = mainVM;
+
             }
         }
 

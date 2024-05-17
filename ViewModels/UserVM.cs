@@ -131,5 +131,46 @@ namespace Supermarket.ViewModels
             return true;
         }
 
+        public void GetDayProfits(object Obj)
+        {
+            dayProfits.Clear();
+            Tuple<int, int> tuple = Obj as Tuple<int, int>;
+            if (tuple == null)
+            {
+                userBLL.ErrorMessage = "Invalid input!";
+            }
+            var result = userBLL.GetProfitPerUser(tuple.Item1, tuple.Item2);
+            foreach (var item in result)
+            {
+                dayProfits.Add(new DayProfit { Date = item.day, Profit = item.total_profit });
+            }
+        }
+
+        private ObservableCollection<DayProfit> dayProfits;
+        public ObservableCollection<DayProfit> DayProfits
+        {
+            get { return dayProfits; }
+            private set
+            {
+                dayProfits = value;
+                NotifyPropertyChanged(nameof(DayProfits));
+            }
+        }
+
+        private ICommand getDayProfitsCommand;
+        public ICommand GetDayProfitsCommand
+        {
+            get
+            {
+                return getDayProfitsCommand ?? (getDayProfitsCommand = new RelayCommand(GetDayProfits));
+            }
+        }
+
+    }
+
+    public class DayProfit
+    {
+        public DateTime Date { get; set; }
+        public double? Profit { get; set; }
     }
 }

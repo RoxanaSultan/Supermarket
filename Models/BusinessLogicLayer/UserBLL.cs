@@ -72,5 +72,10 @@ namespace Supermarket.Models.BusinessLogicLayer
             return new ObservableCollection<User>(context.Users.ToList());
         }
 
+        public List<GetProfitPerUser_Result> GetProfitPerUser(int user_id, int month)
+        {
+            return context.GetProfitPerUser(user_id, month).ToList();
+        }
+
     }
 }
