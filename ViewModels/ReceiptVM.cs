@@ -176,7 +176,7 @@ namespace Supermarket.ViewModels
                     }
                     Products = new ObservableCollection<Product>(receiptBLL.GetProductsByBarcode(barcode));
                     break;
-                case "Expiration Date":
+                case "Expiration date":
                     DateTime expirationDate;
                     if (!DateTime.TryParse(descripton, out expirationDate))
                     {

@@ -75,8 +75,26 @@ namespace Supermarket.Models.BusinessLogicLayer
 
         public List<Product> GetProductsByExpirationDate(DateTime date)
         {
-            //aici e hardocdat! expiration date se ia din stocuri
-            return context.Products.Where(p => p.name == "da").ToList();
+            List<GetProductsByExpirationDate_Result> results = context.GetProductsByExpirationDate(date).ToList();
+            List<Product> products = new List<Product>();
+            foreach (var result in results)
+            {
+                // Convert GetProducts_Result objects to Product objects
+                Product product = new Product
+                {
+                    // Assign properties based on data from GetProducts_Result
+                    product_id = result.product_id,
+                    name = result.name,
+                    barcode = result.barcode,
+                    category = result.category,
+                    producer_id = result.producer_id,
+                    Producer = GetProducerById(result.producer_id)
+                    // Add other properties as needed
+                };
+                products.Add(product);
+            }
+            return products;
+            
         }
 
         public List<Product> GetProductsFrom(List<Product> results)
