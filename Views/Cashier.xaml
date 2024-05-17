@@ -34,7 +34,9 @@
             </Button.CommandParameter>
         </Button>
         <Button Content="Add Product" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,100,50,0" 
-                Command="{Binding AddProductCommand}" CommandParameter="{Binding ElementName=SearchedProductsGrid, Path=SelectedItem}" />
+                Command="{Binding AddInReceipt}" CommandParameter="{Binding ElementName=SearchedProductsGrid, Path=SelectedItem}" />
+        <Button Content="Total" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,150,50,0" 
+        Command="{Binding TotalReceipt}" />
         <DataGrid Name="SearchedProductsGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products}" 
         Grid.ColumnSpan="2">
@@ -47,7 +49,7 @@
         </DataGrid>
 
         <ScrollViewer x:Name="ProductsList" VerticalScrollBarVisibility="Auto" Grid.Column="2" Margin="30">
-            <ListBox ItemsSource="{Binding ProductsReceipts, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"/>
+            <ListBox ItemsSource="{Binding Receipt, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"/>
         </ScrollViewer>
     </Grid>
 </UserControl>
