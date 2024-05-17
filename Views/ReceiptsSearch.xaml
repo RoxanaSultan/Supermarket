@@ -7,7 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Calendar HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Calendar HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70" Grid.Column="0"/>
 
+        <Button Content="Find Receipt" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,70,0"
+         Command="{Binding FindReceipt}" CommandParameter="{Binding ElementName=ReceiptsProductsGrid, Path=SelectedItem}" />
+
+        <DataGrid Name="ReceiptsProductsGrid"  Margin="50" AutoGenerateColumns="False"
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
