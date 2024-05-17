@@ -47,13 +47,12 @@ namespace Supermarket.ViewModels
         {
             get { 
                 ObservableCollection<CategoryProfit> categoriesProfit = new ObservableCollection<CategoryProfit>();
-                foreach (var category in Categories)
+                foreach (var tuple in productBLL.GetCategoryProfit())
                 {
-                    decimal profit = productBLL.GetCategoryProfit(category);
                     categoriesProfit.Add(new CategoryProfit
                     {
-                        Category = category,
-                        Profit = profit
+                        Category = tuple.Item1,
+                        Profit = tuple.Item2
                     });
                 }
                 return categoriesProfit; }
