@@ -124,15 +124,15 @@ namespace Supermarket.Models.BusinessLogicLayer
             return context.Producers.FirstOrDefault(p => p.producer_id == producerId);
         }
 
-        public decimal GetCategoryProfit(string category)
+        public List<Tuple<string,decimal>> GetCategoryProfit()
         {
-            decimal profit = 0;
-            List<Product> products = context.Products.Where(p => p.category == category).ToList();
-            foreach (var product in products)
+            var result = context.GetProfitForCategories();
+            List<Tuple<string,decimal>> myList = new List<Tuple<string, decimal>>();
+            foreach(var item in result)
             {
-                profit += 1;
+                myList.Add(new Tuple<string, decimal>(item.category, (decimal)item.total_profit));
             }
-            return profit;
+            return myList;
         }
 
 }
