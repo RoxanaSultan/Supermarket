@@ -25,14 +25,6 @@ namespace Supermarket.Views
             InitializeComponent();
         }
 
-        private void Suggestions_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }

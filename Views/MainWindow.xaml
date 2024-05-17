@@ -5,7 +5,7 @@
         Title="Main Window" Height="450" Width="800">
     <Grid>
         <local:Admin x:Name="AdminWindow" Visibility="Hidden"/>
-        <local:Cashier x:Name="CashierWindow" Visibility="Hidden"/>
+        <local:Cashier x:Name="CashierWindow" Visibility="Hidden" DataContext="{Binding receiptVM}"/>
         <!-- Position the buttons using a StackPanel for simplicity -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Administrator Button -->

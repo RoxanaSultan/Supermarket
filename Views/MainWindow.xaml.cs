@@ -20,10 +20,12 @@ namespace Supermarket.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainVM();
+            
 
         }
         private void AdminButton_Click(object sender, RoutedEventArgs e)

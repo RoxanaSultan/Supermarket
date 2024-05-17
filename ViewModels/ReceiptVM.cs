@@ -26,6 +26,17 @@ namespace Supermarket.ViewModels
                 NotifyPropertyChanged(nameof(Receipts));
             }
         }
+        private ObservableCollection<Product> products;
+        public ObservableCollection<Product> Products
+        {
+            get { return products; }
+            private set
+            {
+                products = value;
+                NotifyPropertyChanged(nameof(Products));
+            }
+        }
+
         public ReceiptVM()
         {
             receiptBLL = new ReceiptBLL();
@@ -123,6 +134,80 @@ namespace Supermarket.ViewModels
             }
 
             return true;
+        }
+
+        private ICommand searchProductCommand;
+        public ICommand SearchProductCommand
+        {
+            get
+            {
+                return searchProductCommand ?? (searchProductCommand = new RelayCommand(SearchProduct));
+            }
+        }
+
+        private void SearchProduct(object obj)
+        {
+            Tuple<string, string> tuple = obj as Tuple<string, string>;
+            if (tuple == null)
+            {
+                receiptBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+
+            string descripton = tuple.Item1;
+            string type = tuple.Item2;
+            switch(type)
+            {
+                case "Name":
+                    string name = descripton;
+                    if(name == null || name.Length == 0)
+                    {
+                        receiptBLL.ErrorMessage = "Invalid name!";
+                        return;
+                    }
+                    Products = new ObservableCollection<Product>(receiptBLL.GetProductsByName(name));
+                    break;
+                case "Barcode":
+                    string barcode = descripton;
+                    if(barcode == null || barcode.Length == 0)
+                    {
+                        receiptBLL.ErrorMessage = "Invalid barcode!";
+                        return;
+                    }
+                    Products = new ObservableCollection<Product>(receiptBLL.GetProductsByBarcode(barcode));
+                    break;
+                case "Expiration Date":
+                    DateTime expirationDate;
+                    if (!DateTime.TryParse(descripton, out expirationDate))
+                    {
+                        receiptBLL.ErrorMessage = "Invalid expiration date!";
+                        return;
+                    }
+                    Products = new ObservableCollection<Product>(receiptBLL.GetProductsByExpirationDate(expirationDate));
+                    break;
+                case "Producer":
+                    string producer = descripton;
+                    if(producer == null || producer.Length == 0)
+                    {
+                        receiptBLL.ErrorMessage = "Invalid producer!";
+                        return;
+                    }
+                    Products = new ObservableCollection<Product>(receiptBLL.GetProductsByProducerName(producer));
+                    break;
+                case "Category":
+                    string category = descripton;
+                    if(category == null || category.Length == 0)
+                    {
+                        receiptBLL.ErrorMessage = "Invalid category!";
+                        return;
+                    }
+                    Products = new ObservableCollection<Product>(receiptBLL.GetProductsByCategory(category));
+                    break;
+                default:
+                    receiptBLL.ErrorMessage = "Invalid search type!";
+                    break;
+            }
+            NotifyPropertyChanged(nameof(Receipts));
         }
 
     }

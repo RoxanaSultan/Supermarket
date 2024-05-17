@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
+             xmlns:localConverters="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <localConverters:ReceiptConverter x:Key="ReceiptConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -20,11 +24,17 @@
             <ComboBoxItem Content="Category"/>
         </ComboBox>
 
-        <TextBox Name="SearchBox" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" TextChanged="SearchBox_TextChanged"/>
-        <ListBox Name="Suggestions" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" SelectionChanged="Suggestions_SelectionChanged"/>
-        <Button Content="Add product" Width="100" Height="30" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <TextBox Name="SearchBox" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Button Content="Add product" Width="100" Height="30" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,0,0" Command="{Binding SearchProductCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource ReceiptConverter}">
+                    <Binding ElementName="SearchBox" Path="Text"/>
+                    <Binding ElementName="Search" Path="SelectedItem"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
         <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding SearchedProducts}" 
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products}" 
         Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding name}" />
