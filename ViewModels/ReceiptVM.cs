@@ -16,6 +16,7 @@ namespace Supermarket.ViewModels
     class ReceiptVM : BaseVM
     {
         private ReceiptBLL receiptBLL;
+        private ReceiptProductBLL receiptProductBLL;
         private ObservableCollection<Receipt> receipts;
         public ObservableCollection<Receipt> Receipts
         {
@@ -55,6 +56,7 @@ namespace Supermarket.ViewModels
         private string user;
         public ReceiptVM(string user)
         {
+            receiptProductBLL = new ReceiptProductBLL();
             receiptBLL = new ReceiptBLL();
             receipts = new ObservableCollection<Receipt>(receiptBLL.GetReceipts());
             receipt = new ObservableCollection<string>();
@@ -285,15 +287,19 @@ namespace Supermarket.ViewModels
             receipt.Add("Total: " + receipt.Sum(r => Convert.ToDecimal(r.Substring(r.LastIndexOf(".....") + 5, r.LastIndexOf("lei") - r.LastIndexOf(".....") - 5))) + "lei");
             NotifyPropertyChanged(nameof(Receipt));
 
-
-            AddReceipt( new Receipt
+            Receipt myReceipt = new Receipt
             {
                 date_issue = DateTime.Now,
                 cashier_id = receiptBLL.getUserId(user),
                 total_price = Convert.ToDouble(receipt.Last().Substring(receipt.Last().LastIndexOf(" ") + 1, receipt.Last().LastIndexOf("lei") - receipt.Last().LastIndexOf(" ") - 1)),
                 User = receiptBLL.GetUser(user)
-             
-            });
+
+            };
+            AddReceipt(myReceipt);
+            foreach (var product in productsInReceipt)
+            {
+                receiptProductBLL.AddReceiptProduct(myReceipt.receipt_id, product.Key, product.Value, receiptProductBLL.GetInventoryFromProduct(product.Key));
+            }
         }
 
     }

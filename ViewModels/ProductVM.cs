@@ -212,7 +212,6 @@ namespace Supermarket.ViewModels
 
                 // Call the business logic layer to update the categories
                 productBLL.UpdateCategories(oldCategory, newCategory);
-                ObservableCollection<Product> list = new ObservableCollection<Product>(productBLL.GetProducts());
 
                 // Update the category set in the ViewModel
                 UpdateCategorySet();

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Supermarket.Views"
-             xmlns:localConverters="clr-namespace:Supermarket.Converter"
+             xmlns:localConverters="clr-namespace:Supermarket.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -14,9 +14,9 @@
         <DataGrid Name="UsersGrid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="225" Width="500" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Username" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Password" Binding="{Binding Password}" />
-                <DataGridTextColumn Header="User type" Binding="{Binding Type}" />
+                <DataGridTextColumn Header="Username" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Password" Binding="{Binding password}" />
+                <DataGridTextColumn Header="User type" Binding="{Binding type}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -38,7 +38,7 @@
         </ComboBox>
 
         <Button Content="Search" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,40,10,0" 
-        Command="{Binding GetDayProfitCommand}">
+        Command="{Binding GetDayProfitsCommand}">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource DayProfitConverter}">
                     <Binding ElementName="UsersGrid" Path="SelectedItem.user_id"/>
@@ -48,7 +48,7 @@
         </Button>
 
         <DataGrid Name="ProfitGrid" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="225" Width="500" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding DayProfit}" Visibility="Visible">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding DayProfits}" Visibility="Visible">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
                 <DataGridTextColumn Header="Profit" Binding="{Binding Profit}" />

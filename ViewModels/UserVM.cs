@@ -146,7 +146,7 @@ namespace Supermarket.ViewModels
             }
         }
 
-        private ObservableCollection<DayProfit> dayProfits;
+        private ObservableCollection<DayProfit> dayProfits = new ObservableCollection<DayProfit>();
         public ObservableCollection<DayProfit> DayProfits
         {
             get { return dayProfits; }

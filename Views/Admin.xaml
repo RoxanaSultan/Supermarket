@@ -45,7 +45,7 @@
             <TabItem Header="Data Search">
                 <TabControl>
                     <TabItem Header="Users">
-                        <local:UsersSearch/>
+                        <local:UsersSearch DataContext="{Binding userVM}"/>
                     </TabItem>
                     <TabItem Header="Categories">
                         <local:CategoriesSearch DataContext="{Binding productVM}"/>
