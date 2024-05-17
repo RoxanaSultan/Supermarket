@@ -5,6 +5,7 @@
         Title="Main Window" Height="450" Width="800">
     <Grid>
         <local:Admin x:Name="AdminWindow" Visibility="Hidden"/>
+        <local:Cashier x:Name="CashierWindow" Visibility="Hidden"/>
         <!-- Position the buttons using a StackPanel for simplicity -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Administrator Button -->
@@ -19,6 +20,7 @@
                     Content="Cashier" 
                     Width="200" Height="50" 
                     Margin="10" 
+                    Click="CashierButton_Click"
                     />
         </StackPanel>
     </Grid>

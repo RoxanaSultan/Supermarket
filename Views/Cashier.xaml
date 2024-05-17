@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Supermarket.Views.Cashier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Supermarket.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox Name="Search" Width="150" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0">
+            <ComboBoxItem Content="Name"/>
+            <ComboBoxItem Content="Barcode"/>
+            <ComboBoxItem Content="Expiration date"/>
+            <ComboBoxItem Content="Producer"/>
+            <ComboBoxItem Content="Category"/>
+        </ComboBox>
+
+        <TextBox Name="SearchBox" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" TextChanged="SearchBox_TextChanged"/>
+        <ListBox Name="Suggestions" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" SelectionChanged="Suggestions_SelectionChanged"/>
+        <Button Content="Add product" Width="100" Height="30" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding SearchedProducts}" 
+        Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Barcode" Binding="{Binding barcode}" />
+                <DataGridTextColumn Header="Category" Binding="{Binding category}" />
+                <DataGridTextColumn Header="Producer" Binding="{Binding Producer.name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ScrollViewer x:Name="ProductsList" VerticalScrollBarVisibility="Auto" Grid.Column="2" Margin="30">
+            <ListBox ItemsSource="{Binding ProductsReceipts, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -42,13 +42,16 @@ namespace Supermarket.Views
 
         private void CashierButton_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow("cashier");
-            bool? result = loginWindow.ShowDialog();
+            //LoginWindow loginWindow = new LoginWindow("cashier");
+            //bool? result = loginWindow.ShowDialog();
 
-            if (result == true)
+            //if (result == true)
             {
                 // If login is successful, you can proceed to show the cashier window or do other tasks
                 // Example: CashierWindow.Visibility = Visibility.Visible;
+                AdminButton.Visibility = Visibility.Hidden;
+                CashierButton.Visibility = Visibility.Hidden;
+                CashierWindow.Visibility = Visibility.Visible;
             }
         }
 
