@@ -57,6 +57,11 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Producer not found!";
                 return;
             }
+            if(oldProducer.active == false)
+            {
+                ErrorMessage = "Producer is not active!";
+                return;
+            }
             context.Producers.Remove(oldProducer);
             context.SaveChanges();
         }

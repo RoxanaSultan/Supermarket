@@ -10,6 +10,7 @@ using Supermarket.Views;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Supermarket.Models.Database;
+using System.Windows;
 
 namespace Supermarket.ViewModels
 {
@@ -43,6 +44,11 @@ namespace Supermarket.ViewModels
             if (!IsValidInventory(inventory))
             {
                 inventoryBLL.ErrorMessage = "Validation failed!";
+                return;
+            }
+            if (inventory.Product.active == false)
+            {
+                MessageBox.Show("Product is not active!");
                 return;
             }
             inventoryBLL.AddInventory(inventory);
