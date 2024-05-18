@@ -66,21 +66,21 @@ namespace Supermarket.ViewModels
 
         public void AddReceipt(object obj)
         {
-            Receipt receipt = obj as Receipt;
-            if (receipt == null)
+            Receipt myReceipt = obj as Receipt;
+            if (myReceipt == null)
             {
                 receiptBLL.ErrorMessage = "Invalid input!";
                 return;
             }
-            if (!IsValidReceipt(receipt))
+            if (!IsValidReceipt(myReceipt))
             {
                 receiptBLL.ErrorMessage = "Validation failed!";
                 return;
             }
-            receiptBLL.AddReceipt(receipt);
+            receiptBLL.AddReceipt(myReceipt);
             if (string.IsNullOrEmpty(receiptBLL.ErrorMessage))
             {
-                receipts.Add(receipt);
+                receipts.Add(myReceipt);
             }
         }
 
@@ -299,13 +299,14 @@ namespace Supermarket.ViewModels
                 date_issue = DateTime.Now,
                 cashier_id = receiptBLL.getUserId(user),
                 total_price = Convert.ToDouble(receipt.Last().Substring(receipt.Last().LastIndexOf(" ") + 1, receipt.Last().LastIndexOf("lei") - receipt.Last().LastIndexOf(" ") - 1)),
-                User = receiptBLL.GetUser(user)
+                //User = receiptBLL.GetUser(user)
 
             };
             AddReceipt(myReceipt);
+            int myReceiptId = receiptBLL.GetLastReceipt();
             foreach (var product in productsInReceipt)
             {
-                receiptProductBLL.AddReceiptProduct(myReceipt.receipt_id, product.Key, product.Value, receiptProductBLL.GetInventoryFromProduct(product.Key));
+                receiptProductBLL.AddReceiptProduct(myReceiptId, product.Key, product.Value, receiptProductBLL.GetInventoryFromProduct(product.Key));
             }
         }
 

@@ -87,7 +87,7 @@ namespace Supermarket.Models.BusinessLogicLayer
                     category = result.category,
                     producer_id = result.producer_id,
                     Producer = GetProducerById(result.producer_id),
-                    active = result.active
+                    active = true
                     // Add other properties as needed
                 };
                 if(product.active == true)

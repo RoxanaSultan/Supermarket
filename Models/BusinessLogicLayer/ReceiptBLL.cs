@@ -5,6 +5,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Supermarket.Models.Database;
+using Supermarket.ViewModels;
 using Supermarket.Views;
 
 namespace Supermarket.Models.BusinessLogicLayer
@@ -160,6 +161,11 @@ namespace Supermarket.Models.BusinessLogicLayer
         public double GetPriceForProduct(int productId)
         {
             var result = context.GetPriceForProduct(productId).FirstOrDefault();
+            return result.Value;
+        }
+        public int GetLastReceipt()
+        {
+            var result = context.GetLastReceipt().FirstOrDefault();
             return result.Value;
         }
 
