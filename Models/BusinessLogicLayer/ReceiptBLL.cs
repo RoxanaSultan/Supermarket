@@ -157,6 +157,11 @@ namespace Supermarket.Models.BusinessLogicLayer
             }
             return false;
         }
+        public double GetPriceForProduct(int productId)
+        {
+            var result = context.GetPriceForProduct(productId).FirstOrDefault();
+            return result.Value;
+        }
 
     }
 }

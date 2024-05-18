@@ -285,7 +285,7 @@ namespace Supermarket.ViewModels
             {
 
                 Product p = receiptBLL.GetProduct(product.Key);
-                decimal price = 30;
+                double price = receiptBLL.GetPriceForProduct(p.product_id);
                 if (p != null)
                 {
                     receipt.Add(product.Value + " X " + p.name + " .....  " + price * product.Value + "lei");
