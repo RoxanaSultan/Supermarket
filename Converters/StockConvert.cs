@@ -28,6 +28,7 @@ namespace Supermarket.Converters
             double pricePurchase = System.Convert.ToDouble(values[4]);
             double priceSelling = pricePurchase + (pricePurchase * 0.1);
             string productName = values[5].ToString();
+            bool active = true;
             
             // Retrieve the ID of the producer based on the name
             using (var db = new supermarketEntities())
@@ -46,7 +47,8 @@ namespace Supermarket.Converters
                         price_purchase = pricePurchase,
                         price_selling = priceSelling,
                         product_id = product.product_id,
-                        Product = product
+                        Product = product,
+                        active = active
                     };
                 }
             }

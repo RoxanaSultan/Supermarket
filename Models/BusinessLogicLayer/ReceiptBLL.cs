@@ -137,9 +137,25 @@ namespace Supermarket.Models.BusinessLogicLayer
             return context.Users.FirstOrDefault(u => u.name == username);
         }
 
+
         public Product GetProduct(int productId)
         {
                return context.Products.FirstOrDefault(p => p.product_id == productId);
+        }
+
+        public void UpdateInventory(int productId)
+        {
+            context.UpdateInventory(productId);
+        }
+
+        public bool IsStockAvailable(int productId)
+        {
+            var inventoryStatus = context.Inventories.FirstOrDefault(i => i.product_id == productId);
+            if (inventoryStatus != null)
+            {
+                return inventoryStatus.active;
+            }
+            return false;
         }
 
     }
