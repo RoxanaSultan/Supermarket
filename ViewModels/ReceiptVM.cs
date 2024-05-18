@@ -10,6 +10,7 @@ using Supermarket.Views;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Supermarket.Models.Database;
+using System.Windows;
 
 namespace Supermarket.ViewModels
 {
@@ -248,9 +249,15 @@ namespace Supermarket.ViewModels
                 return;
             }
             int product_id = product.product_id;
-            if(product_id == 0)
+            if(product_id == 0) //de adaugat verificarea daca mai exista stoc
             {
                 receiptBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+            if(!receiptBLL.IsStockAvailable(product_id))
+            {
+                receiptBLL.ErrorMessage = "Stock not available!";
+                MessageBox.Show("Stock not available!");
                 return;
             }
             if(productsInReceipt.ContainsKey(product_id))
@@ -261,7 +268,7 @@ namespace Supermarket.ViewModels
             {
                 productsInReceipt.Add(product_id, 1);
             }
-            
+            receiptBLL.UpdateInventory(product_id);
         }
 
         private ICommand totalReceipt;
