@@ -284,7 +284,7 @@ namespace Supermarket.ViewModels
             foreach (var product in productsInReceipt)
             {
 
-                Product p = products.FirstOrDefault(pr => pr.product_id == product.Key);
+                Product p = receiptBLL.GetProduct(product.Key);
                 decimal price = 30;
                 if (p != null)
                 {
