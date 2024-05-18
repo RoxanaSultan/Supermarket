@@ -57,18 +57,13 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Producer not found!";
                 return;
             }
-            if(oldProducer.active == false)
-            {
-                ErrorMessage = "Producer is not active!";
-                return;
-            }
             context.Producers.Remove(oldProducer);
             context.SaveChanges();
         }
 
         public List<Producer> GetProducers()
         {
-            return context.Producers.ToList();
+            return context.Producers.Where(p => (bool)p.active).ToList();
         }
 
         public Producer GetProducer(int id)
@@ -94,8 +89,6 @@ namespace Supermarket.Models.BusinessLogicLayer
                     category = result.category
                     // Map other properties as needed
                 };
-
-                products.Add(product);
             }
 
             return products;

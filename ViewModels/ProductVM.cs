@@ -150,16 +150,11 @@ namespace Supermarket.ViewModels
                 productBLL.ErrorMessage = "Invalid input!";
                 return;
             }
-            if(product.active == false)
-            {
-                MessageBox.Show("Product is not active!");
-                return;
-            }
             productBLL.DeleteProduct(product);
-            //if (string.IsNullOrEmpty(productBLL.ErrorMessage))
-            //{
-            //    products.Remove(product);
-            //}
+            if (string.IsNullOrEmpty(productBLL.ErrorMessage))
+            {
+                products.Remove(product);
+            }
             UpdateCategorySet();
         }
         private ICommand deleteProductCommand;

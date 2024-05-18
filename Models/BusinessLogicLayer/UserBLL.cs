@@ -74,7 +74,7 @@ namespace Supermarket.Models.BusinessLogicLayer
 
         public ObservableCollection<User> GetUsers()
         {
-            return new ObservableCollection<User>(context.Users.ToList());
+            return new ObservableCollection<User>(context.Users.Where(u => (bool)u.active).ToList());
         }
 
         public List<GetProfitPerUser_Result> GetProfitPerUser(int user_id, int month)

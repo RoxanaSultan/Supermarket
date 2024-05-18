@@ -72,8 +72,9 @@ namespace Supermarket.Models.BusinessLogicLayer
 
         public List<Inventory> GetInventories()
         {
-            return context.Inventories.ToList();
+            return context.Inventories.Where(i => i.active).ToList();
         }
+
 
         public Inventory GetInventory(int id)
         {

@@ -120,11 +120,6 @@ namespace Supermarket.ViewModels
                 producerBLL.ErrorMessage = "Invalid input!";
                 return;
             }
-            if(producer.active == false)
-            {
-                MessageBox.Show("Producer is not active!");
-                return;
-            }
             producerBLL.DeleteProducer(producer);
             if (string.IsNullOrEmpty(producerBLL.ErrorMessage))
             {

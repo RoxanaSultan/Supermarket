@@ -66,11 +66,6 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Product not found!";
                 return;
             }
-            if(oldProduct.active == false)
-            {
-                ErrorMessage = "Product is not active!";
-                return;
-            }
             context.Products.Remove(oldProduct);
             context.SaveChanges();
         }
@@ -95,7 +90,10 @@ namespace Supermarket.Models.BusinessLogicLayer
                     active = result.active
                     // Add other properties as needed
                 };
-                products.Add(product);
+                if(product.active == true)
+                {
+                    products.Add(product);
+                }
             }
             return products;
             //return context.Products.ToList();

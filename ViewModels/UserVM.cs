@@ -107,11 +107,6 @@ namespace Supermarket.ViewModels
                 userBLL.ErrorMessage = "Invalid input!";
                 return;
             }
-            if (user.active == false)
-            {
-                MessageBox.Show("User is not active!");
-                return;
-            }
             userBLL.DeleteUser(user);
             if (string.IsNullOrEmpty(userBLL.ErrorMessage))
             {
