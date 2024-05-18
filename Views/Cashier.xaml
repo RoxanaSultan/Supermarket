@@ -35,8 +35,10 @@
         </Button>
         <Button Content="Add Product" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,100,50,0" 
                 Command="{Binding AddInReceipt}" CommandParameter="{Binding ElementName=SearchedProductsGrid, Path=SelectedItem}" />
-        <Button Content="Total" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,150,50,0" 
+        <Button Content="Total" Width="100" Height="30" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,100,0,0" 
         Command="{Binding TotalReceipt}" />
+        <Button Content="Close receipt" Width="100" Height="30" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,100,0,0" 
+        Command="{Binding CloseReceipt}" />
         <DataGrid Name="SearchedProductsGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products}" 
         Grid.ColumnSpan="2">
