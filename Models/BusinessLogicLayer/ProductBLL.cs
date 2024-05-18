@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -19,6 +20,11 @@ namespace Supermarket.Models.BusinessLogicLayer
             if (product == null)
             {
                 ErrorMessage = "Invalid input!";
+                return;
+            }
+            if(product.Producer.active == false)
+            {
+                ErrorMessage = "Producer is not active!";
                 return;
             }
             context.Products.Add(product);
@@ -60,6 +66,11 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Product not found!";
                 return;
             }
+            if(oldProduct.active == false)
+            {
+                ErrorMessage = "Product is not active!";
+                return;
+            }
             context.Products.Remove(oldProduct);
             context.SaveChanges();
         }
@@ -80,7 +91,8 @@ namespace Supermarket.Models.BusinessLogicLayer
                     barcode = result.barcode,
                     category = result.category,
                     producer_id = result.producer_id,
-                    Producer = GetProducerById(result.producer_id)
+                    Producer = GetProducerById(result.producer_id),
+                    active = result.active
                     // Add other properties as needed
                 };
                 products.Add(product);

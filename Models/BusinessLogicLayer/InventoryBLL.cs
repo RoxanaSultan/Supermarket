@@ -19,6 +19,11 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Invalid input!";
                 return;
             }
+            if (inventory.Product.active == false)
+            {
+                ErrorMessage = "Product is not active!";
+                return;
+            }
             context.Inventories.Add(inventory);
             context.SaveChanges();
         }

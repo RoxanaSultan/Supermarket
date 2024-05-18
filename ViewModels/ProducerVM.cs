@@ -10,6 +10,7 @@ using Supermarket.Views;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Supermarket.Models.Database;
+using System.Windows;
 
 namespace Supermarket.ViewModels
 {
@@ -117,6 +118,11 @@ namespace Supermarket.ViewModels
             if (producer == null)
             {
                 producerBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+            if(producer.active == false)
+            {
+                MessageBox.Show("Producer is not active!");
                 return;
             }
             producerBLL.DeleteProducer(producer);

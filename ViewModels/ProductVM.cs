@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Supermarket.Models.Database;
 using System.Diagnostics;
+using System.Windows;
 
 namespace Supermarket.ViewModels
 {
@@ -83,6 +84,11 @@ namespace Supermarket.ViewModels
                 productBLL.ErrorMessage = "Validation failed!";
                 return;
             }
+            if(product.Producer.active == false)
+            {
+                MessageBox.Show("Producer is not active!");
+                return;
+            }
             productBLL.AddProduct(product);
             if (string.IsNullOrEmpty(productBLL.ErrorMessage))
             {
@@ -144,11 +150,16 @@ namespace Supermarket.ViewModels
                 productBLL.ErrorMessage = "Invalid input!";
                 return;
             }
-            productBLL.DeleteProduct(product);
-            if (string.IsNullOrEmpty(productBLL.ErrorMessage))
+            if(product.active == false)
             {
-                products.Remove(product);
+                MessageBox.Show("Product is not active!");
+                return;
             }
+            productBLL.DeleteProduct(product);
+            //if (string.IsNullOrEmpty(productBLL.ErrorMessage))
+            //{
+            //    products.Remove(product);
+            //}
             UpdateCategorySet();
         }
         private ICommand deleteProductCommand;

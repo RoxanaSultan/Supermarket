@@ -58,6 +58,11 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "User not found!";
                 return;
             }
+            if (oldUser.active == false)
+            {
+                ErrorMessage = "User is not active!";
+                return;
+            }
             context.Users.Remove(oldUser);
             context.SaveChanges();
         }

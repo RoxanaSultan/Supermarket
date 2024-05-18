@@ -11,6 +11,7 @@ using Supermarket.Views;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Supermarket.Models.Database;
+using System.Windows;
 
 
 namespace Supermarket.ViewModels
@@ -104,6 +105,11 @@ namespace Supermarket.ViewModels
             if (user == null)
             {
                 userBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+            if (user.active == false)
+            {
+                MessageBox.Show("User is not active!");
                 return;
             }
             userBLL.DeleteUser(user);
