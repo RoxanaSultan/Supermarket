@@ -137,5 +137,10 @@ namespace Supermarket.Models.BusinessLogicLayer
             return context.Users.FirstOrDefault(u => u.name == username);
         }
 
+        public Product GetProduct(int productId)
+        {
+               return context.Products.FirstOrDefault(p => p.product_id == productId);
+        }
+
     }
 }
