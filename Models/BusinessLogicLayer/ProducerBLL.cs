@@ -89,6 +89,7 @@ namespace Supermarket.Models.BusinessLogicLayer
                     category = result.category
                     // Map other properties as needed
                 };
+                products.Add(product);
             }
 
             return products;

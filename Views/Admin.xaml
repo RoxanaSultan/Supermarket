@@ -54,7 +54,7 @@
                         <local:ProducersSearch DataContext="{Binding producerVM}"/>
                     </TabItem>
                     <TabItem Header="Receipts">
-                        <local:ReceiptsSearch/>
+                        <local:ReceiptsSearch DataContext="{Binding receiptVM}"/>
                     </TabItem>
                 </TabControl>
             </TabItem>

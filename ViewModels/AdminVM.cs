@@ -14,6 +14,7 @@ namespace Supermarket.ViewModels
         public ProductVM productVM { get; set; }
         public InventoryVM inventoryVM { get; set; }
         public OfferVM offerVM { get; set; }
+        public ReceiptVM receiptVM { get; set; }
 
         // Constructor
         public AdminVM()
@@ -23,7 +24,8 @@ namespace Supermarket.ViewModels
             productVM = new ProductVM();
             inventoryVM = new InventoryVM();
             offerVM = new OfferVM();
-
+            receiptVM = new ReceiptVM("admin");
+            
         }
     }
 

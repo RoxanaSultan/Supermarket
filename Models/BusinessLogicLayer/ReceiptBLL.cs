@@ -169,5 +169,18 @@ namespace Supermarket.Models.BusinessLogicLayer
             return result.Value;
         }
 
+        public List<Tuple<string, int, double>> GetProductFromReceipt(DateTime date)
+        {
+            List<GetProductFromReceipt_Result> results = context.GetProductFromReceipt(date).ToList();
+            List<Tuple<string, int, double>> products = new List<Tuple<string, int, double>>();
+            foreach (var result in results)
+            {
+                Tuple<string, int, double> productTuple = Tuple.Create(result.product, result.quantity, result.price);
+                products.Add(productTuple);
+            }
+            return products;
+        }
+
+
     }
 }

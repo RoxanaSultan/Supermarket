@@ -53,6 +53,16 @@ namespace Supermarket.ViewModels
                 NotifyPropertyChanged(nameof(Receipt));
             }
         }
+        private ObservableCollection<Tuple<string, int, double>> productsReceipts;
+        public ObservableCollection<Tuple<string, int, double>> ProductsReceipts
+        {
+            get { return productsReceipts; }
+            private set
+            {
+                ProductsReceipts = value;
+                NotifyPropertyChanged(nameof(ProductsReceipts));
+            }
+        }
 
         private string user;
         public ReceiptVM(string user)
@@ -62,6 +72,7 @@ namespace Supermarket.ViewModels
             receipts = new ObservableCollection<Receipt>(receiptBLL.GetReceipts());
             receipt = new ObservableCollection<string>();
             this.user = user;
+            productsReceipts = new ObservableCollection<Tuple<string, int, double>>();
         }
 
         public void AddReceipt(object obj)
@@ -310,5 +321,40 @@ namespace Supermarket.ViewModels
             }
         }
 
+        private DateTime selectedDate;
+        public DateTime SelectedDate
+        {
+            get { return selectedDate; }
+            set
+            {
+                selectedDate = value;
+                NotifyPropertyChanged(nameof(SelectedDate));
+            }
+        }
+
+        public ICommand findReceiptCommand;
+        public ICommand FindReceiptCommand
+        {
+            get
+            {
+                return findReceiptCommand ?? (findReceiptCommand = new RelayCommand(FindReceipts));
+            }
+        }
+        public void FindReceipts(object obj)
+        {
+            DateTime date = obj as DateTime? ?? SelectedDate;
+            if (date == null)
+            {
+                receiptBLL.ErrorMessage = "Invalid input!";
+                return;
+            }
+            var myReceipts = receiptBLL.GetProductFromReceipt(date);
+            productsReceipts.Clear();
+            foreach (var product in myReceipts)
+            {
+                productsReceipts.Add(product);
+            }
+            NotifyPropertyChanged(nameof(ProductsReceipts));
+        }
     }
 }

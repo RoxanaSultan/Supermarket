@@ -11,17 +11,17 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Calendar HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70" Grid.Column="0"/>
+        <Calendar Name="calendar" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70" Grid.Column="0" SelectedDate="{Binding SelectedDate}"/>
 
         <Button Content="Find Receipt" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,70,0"
-         Command="{Binding FindReceipt}" CommandParameter="{Binding ElementName=ReceiptsProductsGrid, Path=SelectedItem}" />
+         Command="{Binding FindReceiptCommand}" CommandParameter="{Binding ElementName=calendar, Path=SelectedDate}" />
 
         <DataGrid Name="ReceiptsProductsGrid"  Margin="50" AutoGenerateColumns="False"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}" Grid.Column="1">
+        ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProductsReceipts}" Grid.Column="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Item1}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Item2}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Item3}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
