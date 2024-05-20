@@ -7,6 +7,7 @@ using Supermarket.ViewModels;
 using Supermarket.Helpers;
 using System.Windows.Input;
 using Supermarket.Views;
+using System.Windows;
 
 namespace Supermarket.ViewModels
 {
@@ -67,6 +68,19 @@ namespace Supermarket.ViewModels
                 LoadReceiptVM("cashier");
                 IsAdminVisible = false;
                 IsReceiptVisible = true;
+
+                // În loc de Application.Current.MainWindow
+                Window mainWindow = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                if (mainWindow != null)
+                {
+                    // Setează DataContext-ul controlului cu noul ViewModel
+                    Cashier cashierControl = mainWindow.FindName("CashierWindow") as Cashier;
+                    if (cashierControl != null)
+                    {
+                        cashierControl.DataContext = receiptVM; // Sau DataContext-ul dorit
+                    }
+                }
+
             }
         }
 
