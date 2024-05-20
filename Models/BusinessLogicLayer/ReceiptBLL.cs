@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Supermarket.Models.Database;
 using Supermarket.ViewModels;
 using Supermarket.Views;
@@ -22,15 +24,18 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Invalid input!";
                 return;
             }
-            var existingUser = context.Users.FirstOrDefault(u => u.user_id == receipt.cashier_id);
-            if (existingUser == null)
+            using (var context = new supermarketEntities())
             {
-                ErrorMessage = "User not found!";
-                return;
+                var existingUser = context.Users.FirstOrDefault(u => u.user_id == receipt.cashier_id);
+                if (existingUser == null)
+                {
+                    ErrorMessage = "User not found!";
+                    return;
+                }
+                receipt.User = existingUser;
+                context.Receipts.Add(receipt);
+                context.SaveChanges();
             }
-            receipt.User = existingUser;
-            context.Receipts.Add(receipt);
-            context.SaveChanges();
         }
 
         public void DeleteReceipt(object obj)
@@ -168,7 +173,12 @@ namespace Supermarket.Models.BusinessLogicLayer
         public double GetPriceForProduct(int productId)
         {
             var result = context.GetPriceForProduct(productId).FirstOrDefault();
-            return result.Value;
+            if (result != null)
+            {
+                return result.Value;
+            }
+            MessageBox.Show("Unavailable stock!");
+            return 0;
         }
         public int GetLastReceipt()
         {
