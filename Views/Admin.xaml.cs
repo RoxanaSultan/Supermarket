@@ -25,7 +25,7 @@ namespace Supermarket.Views
         public Admin()
         {
             InitializeComponent();
-            this.DataContext = new AdminVM();
+            //this.DataContext = new AdminVM();
         }
 
     }

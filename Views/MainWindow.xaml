@@ -2,10 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Supermarket.Views"
+        xmlns:localConverters="clr-namespace:Supermarket.Converters"
         Title="Main Window" Height="450" Width="800">
+    <Window.Resources>
+        <localConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
-        <local:Admin x:Name="AdminWindow" Visibility="Hidden"/>
-        <local:Cashier x:Name="CashierWindow" Visibility="Hidden" DataContext="{Binding receiptVM}"/>
+        <local:Admin x:Name="AdminWindow" Visibility="{Binding DataContext.IsAdminVisible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"  DataContext="{Binding adminVM}" />
+        <local:Cashier x:Name="CashierWindow" Visibility="{Binding DataContext.IsReceiptVisible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+ DataContext="{Binding receiptVM}"/>
         <!-- Position the buttons using a StackPanel for simplicity -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Administrator Button -->

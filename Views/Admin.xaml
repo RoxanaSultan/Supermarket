@@ -58,6 +58,11 @@
                     </TabItem>
                 </TabControl>
             </TabItem>
+            <TabItem Header="SwitchToCashier">
+                <Grid>
+                    <Button Content="Switch to Cashier" Command="{Binding DataContext.SwitchToCashierCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Height="100" Width="200"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>

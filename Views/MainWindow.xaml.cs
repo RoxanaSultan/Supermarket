@@ -25,7 +25,11 @@ namespace Supermarket.Views
         public MainWindow()
         {
             InitializeComponent();
-            
+            //AdminWindow.Visibility = Visibility.Hidden;
+            //CashierWindow.Visibility = Visibility.Hidden;
+            MainVM initializingVM = new MainVM();
+            DataContext = initializingVM;
+
 
         }
         private void AdminButton_Click(object sender, RoutedEventArgs e)
@@ -38,8 +42,10 @@ namespace Supermarket.Views
                 // If login is successful, you can proceed to show the admin window or do other tasks
                 AdminButton.Visibility = Visibility.Hidden;
                 CashierButton.Visibility = Visibility.Hidden;
-                AdminWindow.Visibility = Visibility.Visible;
+               // AdminWindow.Visibility = Visibility.Visible;
                 mainVM = new MainVM();
+                mainVM.IsAdminVisible = true;
+                mainVM.IsReceiptVisible = false;
                 DataContext = mainVM;
             }
 
@@ -56,11 +62,13 @@ namespace Supermarket.Views
                 // Example: CashierWindow.Visibility = Visibility.Visible;
                 AdminButton.Visibility = Visibility.Hidden;
                 CashierButton.Visibility = Visibility.Hidden;
-                CashierWindow.Visibility = Visibility.Visible;
+               // CashierWindow.Visibility = Visibility.Visible;
                 //user = loginWindow.username;
                 user = "livia";
                 mainVM = new MainVM();
                 mainVM.LoadReceiptVM(user);
+                mainVM.IsAdminVisible = false;
+                mainVM.IsReceiptVisible = true;
                 DataContext = mainVM;
 
             }

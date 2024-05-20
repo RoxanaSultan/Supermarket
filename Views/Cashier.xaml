@@ -16,6 +16,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Button Content="Switch to Admin" Command="{Binding DataContext.SwitchToAdminCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Height="20" Width="100" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <ComboBox Name="Search" Width="150" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0">
             <ComboBoxItem Content="Name"/>
             <ComboBoxItem Content="Barcode"/>
