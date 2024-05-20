@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Supermarket.Models.Database;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Supermarket.ViewModels
 {
@@ -320,19 +321,20 @@ namespace Supermarket.ViewModels
             set
             {
                 selectedDate = value;
+                FindReceipts(selectedDate);
                 NotifyPropertyChanged(nameof(SelectedDate));
             }
         }
 
-        public ICommand findReceiptCommand;
-        public ICommand FindReceiptCommand
-        {
-            get
-            {
-                return findReceiptCommand ?? (findReceiptCommand = new RelayCommand(FindReceipts));
-            }
-        }
-        public void FindReceipts(object obj)
+        //public ICommand findReceiptCommand;
+        //public ICommand FindReceiptCommand
+        //{
+        //    get
+        //    {
+        //        return findReceiptCommand ?? (findReceiptCommand = new RelayCommand(FindReceipts));
+        //    }
+        //}
+        public void FindReceipts(DateTime obj)
         {
             DateTime date = obj as DateTime? ?? SelectedDate;
             if (date == null)
@@ -366,5 +368,16 @@ namespace Supermarket.ViewModels
             NotifyPropertyChanged(nameof(Receipt));
             NotifyPropertyChanged(nameof(ProductsReceipts));
         }
+
+        //private ICommand selectedDateChangedCommand;
+        //public ICommand SelectedDateChangedCommand
+        //{
+        //    get
+        //    {
+        //        return selectedDateChangedCommand ?? (selectedDateChangedCommand = new RelayCommand(SelectedDateChanged));
+        //    }
+        //}
+
+       
     }
 }

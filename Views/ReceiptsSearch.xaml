@@ -13,8 +13,8 @@
         </Grid.ColumnDefinitions>
         <Calendar Name="calendar" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70" Grid.Column="0" SelectedDate="{Binding SelectedDate}"/>
 
-        <Button Content="Find Receipt" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,70,0"
-         Command="{Binding FindReceiptCommand}" CommandParameter="{Binding ElementName=calendar, Path=SelectedDate}" />
+        <!--<Button Content="Find Receipt" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,70,0"
+         Command="{Binding FindReceiptCommand}" CommandParameter="{Binding ElementName=calendar, Path=SelectedDate}" />-->
 
         <DataGrid Name="ReceiptsProductsGrid"  Margin="50" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProductsReceipts}" Grid.Column="1">
