@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Supermarket.Models.Database;
 
 namespace Supermarket.Models.BusinessLogicLayer
@@ -22,11 +23,19 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Invalid input!";
                 return;
             }
-            if(product.Producer.active == false)
+
+            var existingProducer = context.Producers.FirstOrDefault(p => p.producer_id == product.Producer.producer_id);
+            if (existingProducer == null)
+            {
+                ErrorMessage = "Producer not found!";
+                return;
+            }
+            if (existingProducer.active == false)
             {
                 ErrorMessage = "Producer is not active!";
                 return;
             }
+            product.Producer = existingProducer;
             context.Products.Add(product);
             context.SaveChanges();
         }

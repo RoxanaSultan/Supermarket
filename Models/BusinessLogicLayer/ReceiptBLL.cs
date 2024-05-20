@@ -22,6 +22,13 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Invalid input!";
                 return;
             }
+            var existingUser = context.Users.FirstOrDefault(u => u.user_id == receipt.cashier_id);
+            if (existingUser == null)
+            {
+                ErrorMessage = "User not found!";
+                return;
+            }
+            receipt.User = existingUser;
             context.Receipts.Add(receipt);
             context.SaveChanges();
         }

@@ -25,6 +25,6 @@ namespace Supermarket.Views
             InitializeComponent();
         }
 
-        
+
+        }
     }
-}

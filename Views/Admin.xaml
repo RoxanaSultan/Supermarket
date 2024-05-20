@@ -41,7 +41,7 @@
                 </TabControl>
             </TabItem>
 
-            <!-- Tab for Data Search -->            
+            <!-- Tab for Data Search -->
             <TabItem Header="Data Search">
                 <TabControl>
                     <TabItem Header="Users">
@@ -57,14 +57,6 @@
                         <local:ReceiptsSearch DataContext="{Binding receiptVM}"/>
                     </TabItem>
                 </TabControl>
-            </TabItem>
-
-            <!-- Tab for Offers -->
-            <TabItem Header="Offers">
-                <StackPanel>
-                    <TextBlock Text="Content for Offers" Margin="10"/>
-                    <!-- Add controls for managing offers here -->
-                </StackPanel>
             </TabItem>
         </TabControl>
 

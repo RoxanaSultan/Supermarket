@@ -38,8 +38,8 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Producer not found!";
                 return;
             }
-            oldProducer.name = producer.name.Substring(0,15);
-            oldProducer.country = producer.country.Substring(0,15);
+            oldProducer.name = producer.name.Substring(0, Math.Min(producer.name.Length, 15));
+            oldProducer.country = producer.country.Substring(0, Math.Min(producer.country.Length, 15));
             context.SaveChanges();
         }
 

@@ -148,6 +148,7 @@ namespace Supermarket.ViewModels
             if (product == null)
             {
                 productBLL.ErrorMessage = "Invalid input!";
+                MessageBox.Show("Invalid input!");
                 return;
             }
             productBLL.DeleteProduct(product);

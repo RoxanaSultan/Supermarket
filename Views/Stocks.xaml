@@ -27,14 +27,17 @@
         <TextBox x:Name="ExpirationDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="230,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                  Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.date_expiration, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Text="Purchase price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,30,0,0"/>
-        <TextBox x:Name="PurchasePrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+        <TextBlock Text="Purchase price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,5,0,0"/>
+        <TextBox x:Name="PurchasePrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,25,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                  Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.price_purchase, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Text="Product" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,90,0,0"/>
-        <TextBox x:Name="Product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.product_id, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Selling price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,60,0,0"/>
+        <TextBox x:Name="SellingPrice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,85,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.price_selling, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <TextBlock Text="Product" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="450,120,0,0"/>
+        <TextBox x:Name="Product" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="30" Margin="450,145,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+         Text ="{Binding ElementName=StocksGrid, Path=SelectedItem.product_id, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddInventoryCommand}">
             <Button.CommandParameter>

@@ -159,12 +159,6 @@ namespace Supermarket.ViewModels
                 return false;
             }
 
-            // Validate User (assuming that a valid User must be linked with the receipt)
-            if (receipt.User == null || receipt.User.user_id <= 0) // UserId check depends on your User class structure
-            {
-                return false;
-            }
-
             return true;
         }
 
@@ -304,14 +298,12 @@ namespace Supermarket.ViewModels
             }
             receipt.Add("Total: " + receipt.Sum(r => Convert.ToDecimal(r.Substring(r.LastIndexOf(".....") + 5, r.LastIndexOf("lei") - r.LastIndexOf(".....") - 5))) + "lei");
             NotifyPropertyChanged(nameof(Receipt));
-
             Receipt myReceipt = new Receipt
             {
                 date_issue = DateTime.Now,
                 cashier_id = receiptBLL.getUserId(user),
-                total_price = Convert.ToDouble(receipt.Last().Substring(receipt.Last().LastIndexOf(" ") + 1, receipt.Last().LastIndexOf("lei") - receipt.Last().LastIndexOf(" ") - 1)),
-                //User = receiptBLL.GetUser(user)
-
+                User = receiptBLL.GetUser(user),
+                total_price = Convert.ToDouble(receipt.Last().Substring(receipt.Last().LastIndexOf(" ") + 1, receipt.Last().LastIndexOf("lei") - receipt.Last().LastIndexOf(" ") - 1))
             };
             AddReceipt(myReceipt);
             int myReceiptId = receiptBLL.GetLastReceipt();
@@ -354,6 +346,24 @@ namespace Supermarket.ViewModels
             {
                 productsReceipts.Add(product);
             }
+            NotifyPropertyChanged(nameof(ProductsReceipts));
+        }
+
+        public ICommand closeReceipt;
+        public ICommand CloseReceipt
+        {
+            get
+            {
+                return closeReceipt ?? (closeReceipt = new RelayCommand(CloseReceipts));
+            }
+        }
+
+        public void CloseReceipts(object obj)
+        {
+            productsInReceipt.Clear();
+            receipt.Clear();
+            productsReceipts.Clear();
+            NotifyPropertyChanged(nameof(Receipt));
             NotifyPropertyChanged(nameof(ProductsReceipts));
         }
     }
