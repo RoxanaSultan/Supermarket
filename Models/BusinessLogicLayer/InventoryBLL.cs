@@ -39,7 +39,8 @@ namespace Supermarket.Models.BusinessLogicLayer
                 ErrorMessage = "Invalid input!";
                 return;
             }
-            Inventory oldInventory = context.Inventories.FirstOrDefault(i => i.inventory_id == inventory.inventory_id);
+            var oldInventory = context.GetInventory(inventory.inventory_id).FirstOrDefault();
+            //Inventory oldInventory = _oldInventory.FirstOrDefault();
             if (oldInventory == null)
             {
                 ErrorMessage = "Inventory not found!";
