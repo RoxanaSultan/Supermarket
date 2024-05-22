@@ -11,15 +11,15 @@
         <localConverter:ProducerConverter x:Key="producerConverter"/>
     </UserControl.Resources>
     <Grid Background="White">
-        <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
+        <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
         <TextBox x:Name="txtProducerName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                  Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <TextBlock Text="Country" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
+        <TextBlock Text="Country" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
         <TextBox x:Name="txtProducerCountry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                  Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.country, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
+        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}" Foreground="#7D0A0A" Background="#F3EDC8">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource producerConverter}">
                     <Binding ElementName="txtProducerName" Path="Text"/>
@@ -28,15 +28,15 @@
             </Button.CommandParameter>
         </Button>
         <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding UpdateProducerCommand}"
-                CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}"/>
+                CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}" Foreground="#7D0A0A" Background="#F3EDC8" />
         <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding DeleteProducerCommand}"
-                CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}"/>
+                CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}" Foreground="#7D0A0A" Background="#F3EDC8"/>
 
         <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
           ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
-                <DataGridTextColumn Header="Country" Binding="{Binding country}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" Foreground="#7D0A0A"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding country}" Foreground="#7D0A0A" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Supermarket.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <Grid Background="#EAD196">
         <DataGrid Name="CategoriesGrid" AutoGenerateColumns="False" Width="500" Height="400"
           ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding CategoriesProfit}">
             <DataGrid.Columns>

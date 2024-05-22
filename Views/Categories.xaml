@@ -17,12 +17,12 @@
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <!-- Header -->
-        <TextBlock Text="Categories" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
-        <ScrollViewer x:Name="CategoriesList" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <ListBox ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"/>
+        <TextBlock Text="Categories" FontSize="33" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
+        <ScrollViewer x:Name="CategoriesList" VerticalScrollBarVisibility="Auto" Grid.Row="1" Background="#7D0A0A">
+            <ListBox ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" Background="#7D0A0A" Foreground="#FAF5E2"/>
         </ScrollViewer>
-        <TextBox x:Name="NewCategory" Grid.Row="2" Height="30" Width="300" HorizontalAlignment="Left" Margin="150,0,0,0"/>
-        <Button Content="Modify" Grid.Row="2" Height="30" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Command="{Binding UpdateCategoriesCommand}">
+        <TextBox x:Name="NewCategory" Grid.Row="2" Height="30" Width="300" HorizontalAlignment="Left" Margin="150,0,0,0" Background="#FAF5E2"/>
+        <Button Content="Modify" Grid.Row="2" Height="30" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Command="{Binding UpdateCategoriesCommand}" Foreground="#7D0A0A" Background="#F3EDC8">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource CategoriesConverter}">
                     <Binding ElementName="CategoriesList" Path="Content.SelectedItem"/>

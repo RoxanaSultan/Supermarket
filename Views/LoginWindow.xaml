@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="400" Width="400">
     <Grid>
-        <Border Name="Login" Width="250" Height="280" Background="#3e527a" CornerRadius="10" Margin="0,0,0,0" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Name="Login" Width="250" Height="280" Background="#7D0A0A" CornerRadius="10" Margin="0,0,0,0" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid Margin="20" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -26,10 +26,10 @@
                 <Label Content="Login" Foreground="White" FontSize="22" HorizontalAlignment="Center" Grid.Row="0"/>
                 <Separator Grid.Row="1"/>
                 <Label Content="Username" Foreground="White" FontSize="15" Grid.Row="2"/>
-                <TextBox Name="txtUsername" Background="#677482" Foreground="White" FontSize="18" Grid.Row="3"/>
+                <TextBox Name="txtUsername" Background="#BF3131" Foreground="White" FontSize="18" Grid.Row="3"/>
                 <Label Content="Password" Foreground="White" FontSize="15" Grid.Row="4"/>
-                <PasswordBox Name="txtPassword" Background="#677482" Foreground="White" FontSize="18" Grid.Row="5"/>
-                <Button Content="Login" Grid.Row="7" Name="LoginButton" Click="LoginButton_Click" Background="#c4c4cb"/>
+                <PasswordBox Name="txtPassword" Background="#BF3131" Foreground="White" FontSize="18" Grid.Row="5"/>
+                <Button Content="Login" Grid.Row="7" Name="LoginButton" Click="LoginButton_Click" Background="#EAD196"/>
                 <TextBlock Name="txtResult" Visibility="Hidden" Foreground="White" FontWeight="Bold" TextAlignment="Center" Grid.Row="8"/>
             </Grid>
         </Border>

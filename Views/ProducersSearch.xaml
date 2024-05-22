@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Supermarket.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <Grid Background="#7D0A0A">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
@@ -19,7 +19,7 @@
                 <DataGridTextColumn Header="Country" Binding="{Binding country}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Search" Command="{Binding SearchCommand}" Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Center">
+        <Button Content="Search" Command="{Binding SearchCommand}" Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Center" Foreground="#7D0A0A" Background="#F3EDC8">
             <Button.CommandParameter>
                 <Binding ElementName="ProducersSearchGrid" Path="SelectedItem.producer_id" />
             </Button.CommandParameter>

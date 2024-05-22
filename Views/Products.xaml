@@ -11,24 +11,24 @@
         <localConverter:ProductConvert x:Key="productConverter"/>
     </UserControl.Resources>
     <Grid Background="White">
-        <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
+        <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
         <TextBox x:Name="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
-                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <TextBlock Text="Barcode" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
+        <TextBlock Text="Barcode" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
         <TextBox x:Name="Barcode" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.barcode, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.barcode, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <TextBlock Text="Category" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,30,0,0"/>
+        <TextBlock Text="Category" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,30,0,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
         <TextBox x:Name="Category" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.category, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.category, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <TextBlock Text="Producer" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,90,0,0"/>
+        <TextBlock Text="Producer" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,90,0,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
         <TextBox x:Name="Producer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.Producer.name, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text ="{Binding ElementName=ProductsGrid, Path=SelectedItem.Producer.name, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
 
-        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
+        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}" Foreground="#7D0A0A" Background="#F3EDC8">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource productConverter}">
                     <Binding ElementName="Name" Path="Text"/>
@@ -39,17 +39,17 @@
             </Button.CommandParameter>
         </Button>
         <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding UpdateProductCommand}"
-                CommandParameter="{Binding ElementName=ProductsGrid, Path=SelectedItem}"/>
+                CommandParameter="{Binding ElementName=ProductsGrid, Path=SelectedItem}" Foreground="#7D0A0A" Background="#F3EDC8"/>
         <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding DeleteProductCommand}"
-                CommandParameter="{Binding ElementName=ProductsGrid, Path=SelectedItem}"/>
+                CommandParameter="{Binding ElementName=ProductsGrid, Path=SelectedItem}" Foreground="#7D0A0A" Background="#F3EDC8"/>
 
         <DataGrid Name="ProductsGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
-                <DataGridTextColumn Header="Barcode" Binding="{Binding barcode}" />
-                <DataGridTextColumn Header="Category" Binding="{Binding category}" />
-                <DataGridTextColumn Header="Producer" Binding="{Binding Producer.name}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" Foreground="#7D0A0A"/>
+                <DataGridTextColumn Header="Barcode" Binding="{Binding barcode}" Foreground="#7D0A0A" />
+                <DataGridTextColumn Header="Category" Binding="{Binding category}" Foreground="#7D0A0A"/>
+                <DataGridTextColumn Header="Producer" Binding="{Binding Producer.name}" Foreground="#7D0A0A"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

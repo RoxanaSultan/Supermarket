@@ -41,9 +41,9 @@
         <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Username" Binding="{Binding name}" />
-                <DataGridTextColumn Header="Password" Binding="{Binding password}" />
-                <DataGridTextColumn Header="User type" Binding="{Binding type}" />
+                <DataGridTextColumn Header="Username" Binding="{Binding name}" Foreground="#7D0A0A" />
+                <DataGridTextColumn Header="Password" Binding="{Binding password}" Foreground="#7D0A0A"/>
+                <DataGridTextColumn Header="User type" Binding="{Binding type}" Foreground="#7D0A0A" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

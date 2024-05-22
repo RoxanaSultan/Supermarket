@@ -59,8 +59,8 @@
                 </TabControl>
             </TabItem>
             <TabItem Header="SwitchToCashier" Foreground="#7D0A0A" Background="#F3EDC8">
-                <Grid>
-                    <Button Content="Switch to Cashier" Command="{Binding DataContext.SwitchToCashierCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Height="100" Width="200"/>
+                <Grid Background="#7D0A0A">
+                    <Button  Content="Switch to Cashier" Command="{Binding DataContext.SwitchToCashierCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Width="200" Height="250" Foreground="#7D0A0A" Background="#F3EDC8" FontSize="20"/>
                 </Grid>
             </TabItem>
         </TabControl>
