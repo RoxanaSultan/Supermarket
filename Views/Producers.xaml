@@ -13,11 +13,11 @@
     <Grid Background="White">
         <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
         <TextBox x:Name="txtProducerName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
         <TextBlock Text="Country" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
         <TextBox x:Name="txtProducerCountry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.country, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.country, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
         <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddCommand}">
             <Button.CommandParameter>
@@ -31,7 +31,6 @@
                 CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}"/>
         <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding DeleteProducerCommand}"
                 CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}"/>
-        <Button Content="Go Back" Width="50" Height="20" Margin="40,150,30,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="GoBackFromAdminButton_Click"/>
 
         <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
           ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}">

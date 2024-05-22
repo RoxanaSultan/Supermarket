@@ -11,20 +11,20 @@
         <localConverter:UserConverter x:Key="userConverter"/>
     </UserControl.Resources>
     <Grid Background="White">
-        <TextBlock Text="Username" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
-        <TextBox x:Name="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
-                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Username" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="40,30,550,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
+        <TextBox x:Name="Username" HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,350,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
+                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <TextBlock Text="Password" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,90,0,0"/>
-        <TextBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.password, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Password" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="40,90,550,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
+        <TextBox x:Name="Password" HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="30" Margin="40,115,350,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.password, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
-        <TextBlock Text="User type" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="350,30,0,0"/>
-        <TextBox x:Name="UserType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.type, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="User type" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="0,30,250,0" FontWeight="DemiBold" Foreground="#7D0A0A"/>
+        <TextBox x:Name="UserType" HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="30" Margin="350,55,50,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                 Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.type, UpdateSourceTrigger=PropertyChanged}" Background="#FAF5E2"/>
 
 
-        <Button Content="Add" Width="100" Height="40" Margin="0,20,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddUserCommand}">
+        <Button Content="Add" Width="100" Height="40" Margin="30,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding AddUserCommand}" Foreground="#7D0A0A" Background="#F3EDC8">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource userConverter}">
                     <Binding ElementName="Username" Path="Text"/>
@@ -33,10 +33,10 @@
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
-        <Button Content="Edit" Width="100" Height="40" Margin="0,70,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding UpdateUserCommand}"
-                CommandParameter="{Binding ElementName=UsersGrid, Path=SelectedItem}"/>
-        <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding DeleteUserCommand}"
-                CommandParameter="{Binding ElementName=UsersGrid, Path=SelectedItem}"/>
+        <Button Content="Edit" Width="100" Height="40" Margin="30,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding UpdateUserCommand}"
+                CommandParameter="{Binding ElementName=UsersGrid, Path=SelectedItem}" Foreground="#7D0A0A" Background="#F3EDC8"/>
+        <Button Content="Delete" Width="100" Height="40" Margin="30,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding DeleteUserCommand}"
+                CommandParameter="{Binding ElementName=UsersGrid, Path=SelectedItem}" Foreground="#7D0A0A" Background="#F3EDC8"/>
 
         <DataGrid Name="UsersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Users}">

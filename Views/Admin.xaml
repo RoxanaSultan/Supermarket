@@ -9,7 +9,7 @@
     <Grid>
         <TabControl>
             <!-- Tab for Editing -->
-            <TabItem Header="Editing">
+            <TabItem Header="Editing" Foreground="#7D0A0A" Background="#F3EDC8">
                 <TabControl>
                     <TabItem Header="Users">
                         <Grid>
@@ -42,7 +42,7 @@
             </TabItem>
 
             <!-- Tab for Data Search -->
-            <TabItem Header="Data Search">
+            <TabItem Header="Data Search" Foreground="#7D0A0A" Background="#F3EDC8">
                 <TabControl>
                     <TabItem Header="Users">
                         <local:UsersSearch DataContext="{Binding userVM}"/>
@@ -58,12 +58,11 @@
                     </TabItem>
                 </TabControl>
             </TabItem>
-            <TabItem Header="SwitchToCashier">
+            <TabItem Header="SwitchToCashier" Foreground="#7D0A0A" Background="#F3EDC8">
                 <Grid>
                     <Button Content="Switch to Cashier" Command="{Binding DataContext.SwitchToCashierCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Height="100" Width="200"/>
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </UserControl>

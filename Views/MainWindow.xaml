@@ -7,25 +7,33 @@
     <Window.Resources>
         <localConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#7D0A0A">
         <local:Admin x:Name="AdminWindow" Visibility="{Binding DataContext.IsAdminVisible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"  DataContext="{Binding adminVM}" />
         <local:Cashier x:Name="CashierWindow" Visibility="{Binding DataContext.IsReceiptVisible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
  DataContext="{Binding receiptVM}"/>
         <!-- Position the buttons using a StackPanel for simplicity -->
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <!-- Administrator Button -->
             <Button x:Name="AdminButton" 
                     Content="Administrator" 
-                    Width="200" Height="50" 
+                    Width="200" Height="250" 
                     Margin="10" 
                     Click="AdminButton_Click"
+                    Background="#EAD196"
+                    Foreground="#7D0A0A"
+                    FontSize="22"
+                    FontWeight="DemiBold"
                    />
             <!-- Cashier Button -->
             <Button x:Name="CashierButton" 
                     Content="Cashier" 
-                    Width="200" Height="50" 
+                    Width="200" Height="250" 
                     Margin="10" 
                     Click="CashierButton_Click"
+                    Background="#EAD196"
+                    FontSize="22"
+                    FontWeight="DemiBold"
+                    Foreground="#7D0A0A"
                     />
         </StackPanel>
     </Grid>
