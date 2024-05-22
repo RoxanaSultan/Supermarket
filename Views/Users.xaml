@@ -9,8 +9,96 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <localConverter:UserConverter x:Key="userConverter"/>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="#E2BFB3" BorderThickness="1.5" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F9F9F1"/>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#E2BFB3" BorderThickness="1.5" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="Beige"/>
+            <Setter Property="RowBackground" Value="White"/>
+
+            <!--<Setter Property="ColumnHeaderStyle" Value="#F7DED0"/>-->  
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                                <Setter Property="Foreground" Value="#213137"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#D9D9D9"/>
+                        <Setter Property="Foreground" Value="#213137"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
-    <Grid Background="White">
+    <Grid Background="#F9F9F1">
         <TextBlock Text="Username" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
         <TextBox x:Name="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
                  Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
