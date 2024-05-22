@@ -107,6 +107,22 @@
             <ComboBoxItem Content="December"/>
         </ComboBox>
 
+        <!--<ListBox Name="Months" SelectionMode="Single" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,40,110,0" Width="140" Height="250" Background="#EED3D9">
+            <ListBoxItem>January</ListBoxItem>
+            <ListBoxItem>February</ListBoxItem>
+            <ListBoxItem>March</ListBoxItem>
+            <ListBoxItem>April</ListBoxItem>
+            <ListBoxItem>May</ListBoxItem>
+            <ListBoxItem>June</ListBoxItem>
+            <ListBoxItem>July</ListBoxItem>
+            <ListBoxItem>August</ListBoxItem>
+            <ListBoxItem>September</ListBoxItem>
+            <ListBoxItem>October</ListBoxItem>
+            <ListBoxItem>November</ListBoxItem>
+            <ListBoxItem>December</ListBoxItem>
+        </ListBox>-->
+
+
         <Button Content="Search" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,40,10,0" 
         Command="{Binding GetDayProfitsCommand}">
             <Button.CommandParameter>
