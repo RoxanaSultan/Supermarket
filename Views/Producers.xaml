@@ -9,8 +9,99 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <localConverter:ProducerConverter x:Key="producerConverter"/>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="#B5C0D0" BorderThickness="1.5" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F9F9F1"/>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#B5C0D0" BorderThickness="1.5" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#F5E8DD"/>
+            <Setter Property="RowBackground" Value="#F5E8DD"/>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCD3CA"/>
+                                <Setter Property="Foreground" Value="#213137"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#CCD3CA"/>
+                        <Setter Property="Foreground" Value="#213137"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCD3CA"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
-    <Grid Background="White">
+    <Grid Background="#F5E8DD">
         <TextBlock Text="Name" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
         <TextBox x:Name="txtProducerName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                  Text ="{Binding ElementName=ProducersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
@@ -31,7 +122,6 @@
                 CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}"/>
         <Button Content="Delete" Width="100" Height="40" Margin="0,120,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding DeleteProducerCommand}"
                 CommandParameter="{Binding ElementName=ProducersGrid, Path=SelectedItem}"/>
-        <Button Content="Go Back" Width="50" Height="20" Margin="40,150,30,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="GoBackFromAdminButton_Click"/>
 
         <DataGrid Name="ProducersGrid"  Margin="0,180,0,0" AutoGenerateColumns="False"
           ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}">

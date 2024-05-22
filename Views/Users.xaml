@@ -13,7 +13,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="#E2BFB3" BorderThickness="1.5" CornerRadius="10">
+                        <Border x:Name="border" Background="#B5C0D0" BorderThickness="1.5" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -26,6 +26,7 @@
             </Setter>
             <Setter Property="Foreground" Value="#213137"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
         <Style TargetType="TextBox">
@@ -37,7 +38,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="#E2BFB3" BorderThickness="1.5" CornerRadius="5">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#B5C0D0" BorderThickness="1.5" CornerRadius="5">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </Border>
                     </ControlTemplate>
@@ -45,11 +46,13 @@
             </Setter>
         </Style>
 
-        <Style TargetType="DataGrid">
-            <Setter Property="Background" Value="Beige"/>
-            <Setter Property="RowBackground" Value="White"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
-            <!--<Setter Property="ColumnHeaderStyle" Value="#F7DED0"/>-->  
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#F5E8DD"/>
+            <Setter Property="RowBackground" Value="#F5E8DD"/>
             <Setter Property="CellStyle">
                 <Setter.Value>
                     <Style TargetType="DataGridCell">
@@ -59,7 +62,7 @@
                         <Setter Property="Background" Value="White"/>
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="LightBlue"/>
+                                <Setter Property="Background" Value="#CCD3CA"/>
                                 <Setter Property="Foreground" Value="#213137"/>
                             </Trigger>
                         </Style.Triggers>
@@ -69,7 +72,7 @@
             <Setter Property="ColumnHeaderStyle">
                 <Setter.Value>
                     <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#D9D9D9"/>
+                        <Setter Property="Background" Value="#CCD3CA"/>
                         <Setter Property="Foreground" Value="#213137"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="BorderThickness" Value="0.5"/>
@@ -86,7 +89,7 @@
                         <Setter Property="Background" Value="White"/>
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="LightBlue"/>
+                                <Setter Property="Background" Value="#CCD3CA"/>
                                 <Setter Property="Foreground" Value="Black"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -98,7 +101,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="#F9F9F1">
+    <Grid Background="#F5E8DD">
         <TextBlock Text="Username" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13" Margin="40,30,0,0"/>
         <TextBox x:Name="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="30" Margin="40,55,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
                  Text ="{Binding ElementName=UsersGrid, Path=SelectedItem.name, UpdateSourceTrigger=PropertyChanged}"/>
