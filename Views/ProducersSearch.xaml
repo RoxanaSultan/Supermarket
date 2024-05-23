@@ -6,25 +6,102 @@
              xmlns:local="clr-namespace:Supermarket.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="#B5C0D0" BorderThickness="1.5" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#F5E8DD"/>
+            <Setter Property="RowBackground" Value="#F5E8DD"/>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCD3CA"/>
+                                <Setter Property="Foreground" Value="#213137"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#CCD3CA"/>
+                        <Setter Property="Foreground" Value="#213137"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCD3CA"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Select producer" FontSize="15" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="10" Foreground="#213137"/>
         <DataGrid Name="ProducersSearchGrid" AutoGenerateColumns="False"
-          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}" Height="210" VerticalAlignment="Top" Grid.Row="0">
+          ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Producers}" Height="300" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding name}" />
                 <DataGridTextColumn Header="Country" Binding="{Binding country}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Search" Command="{Binding SearchCommand}" Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Center">
+        <Button Content="Search" Command="{Binding SearchCommand}" Grid.Column="0" Grid.Row="2" Width="100" Height="30" HorizontalAlignment="Center" Margin="0,0,0,0">
             <Button.CommandParameter>
                 <Binding ElementName="ProducersSearchGrid" Path="SelectedItem.producer_id" />
             </Button.CommandParameter>
         </Button>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="1" Height="400">
             <ListView ItemsSource="{Binding OrderedProductsByCategory}">
                 <ListView.View>
                     <GridView>

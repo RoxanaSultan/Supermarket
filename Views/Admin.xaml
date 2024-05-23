@@ -6,10 +6,31 @@
         xmlns:local="clr-namespace:Supermarket.Views"
         mc:Ignorable="d"
         Height="450" Width="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="#B5C0D0" BorderThickness="1.5" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <TabControl>
             <!-- Tab for Editing -->
-            <TabItem Header="Editing">
+            <TabItem Header="Edit Data">
                 <TabControl>
                     <TabItem Header="Users">
                         <Grid>
@@ -42,7 +63,7 @@
             </TabItem>
 
             <!-- Tab for Data Search -->
-            <TabItem Header="Data Search">
+            <TabItem Header="Search Data">
                 <TabControl>
                     <TabItem Header="Users">
                         <local:UsersSearch DataContext="{Binding userVM}"/>
@@ -58,9 +79,9 @@
                     </TabItem>
                 </TabControl>
             </TabItem>
-            <TabItem Header="SwitchToCashier">
+            <TabItem Header="Cashier">
                 <Grid>
-                    <Button Content="Switch to Cashier" Command="{Binding DataContext.SwitchToCashierCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Height="100" Width="200"/>
+                    <Button Content="Go to Cashier" Command="{Binding DataContext.SwitchToCashierCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Height="50" Width="100"/>
                 </Grid>
             </TabItem>
         </TabControl>

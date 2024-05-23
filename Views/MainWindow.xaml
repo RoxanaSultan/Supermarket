@@ -6,25 +6,44 @@
         Title="Main Window" Height="450" Width="800">
     <Window.Resources>
         <localConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="#B5C0D0" BorderThickness="1.5" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#213137"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <local:Admin x:Name="AdminWindow" Visibility="{Binding DataContext.IsAdminVisible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"  DataContext="{Binding adminVM}" />
         <local:Cashier x:Name="CashierWindow" Visibility="{Binding DataContext.IsReceiptVisible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
- DataContext="{Binding receiptVM}"/>
+         DataContext="{Binding receiptVM}"/>
         <!-- Position the buttons using a StackPanel for simplicity -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Administrator Button -->
             <Button x:Name="AdminButton" 
                     Content="Administrator" 
                     Width="200" Height="50" 
-                    Margin="10" 
+                    Margin="5" 
                     Click="AdminButton_Click"
                    />
             <!-- Cashier Button -->
             <Button x:Name="CashierButton" 
                     Content="Cashier" 
                     Width="200" Height="50" 
-                    Margin="10" 
+                    Margin="5" 
                     Click="CashierButton_Click"
                     />
         </StackPanel>

@@ -35,15 +35,12 @@ namespace Supermarket.Views
             string password = txtPassword.Password;
             if(loginVM.ableToLogin(username,password, _type))
             {
-                //MainWindow mainWindow = new MainWindow();
-                //mainWindow.Show();
-                //mainWindow.AdminWindow.Visibility = Visibility.Visible;
                 this.DialogResult = true;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Invalid username or password!");
+                MessageBox.Show("Invalid user!");
             }
 
 

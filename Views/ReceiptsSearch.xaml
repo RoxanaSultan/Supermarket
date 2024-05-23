@@ -6,17 +6,68 @@
              xmlns:local="clr-namespace:Supermarket.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#F5E8DD"/>
+            <Setter Property="RowBackground" Value="#F5E8DD"/>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCD3CA"/>
+                                <Setter Property="Foreground" Value="#213137"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#CCD3CA"/>
+                        <Setter Property="Foreground" Value="#213137"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCD3CA"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Calendar Name="calendar" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70" Grid.Column="0" SelectedDate="{Binding SelectedDate}"/>
-
-        <!--<Button Content="Find Receipt" Width="100" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,70,0"
-         Command="{Binding FindReceiptCommand}" CommandParameter="{Binding ElementName=calendar, Path=SelectedDate}" />-->
-
-        <DataGrid Name="ReceiptsProductsGrid"  Margin="50" AutoGenerateColumns="False"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Select Date" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold" Foreground="#213137" Margin="7"/>
+        <Calendar Name="calendar" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" SelectedDate="{Binding SelectedDate}" Grid.Row="0" Margin="0,20,0,0"/>
+        
+        <DataGrid Name="ReceiptsProductsGrid" AutoGenerateColumns="False" Grid.Row="1"
         ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ProductsReceipts}" Grid.Column="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Item1}" />

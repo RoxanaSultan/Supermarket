@@ -20,7 +20,7 @@ namespace Supermarket.ViewModels
         public bool ableToLogin(string username, string password, string type)
         {
             User user = userBLL.GetUser(username, password);
-            return (user != null && user.type.Trim() == type.Trim());
+            return user != null && user.type.Trim() == type.Trim() && user.active;
         }
     }
 }
