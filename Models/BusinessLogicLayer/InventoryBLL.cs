@@ -54,7 +54,7 @@ namespace Supermarket.Models.BusinessLogicLayer
             }
             oldInventory.product_id = inventory.product_id;
             oldInventory.quantity = inventory.quantity;
-            oldInventory.measure = inventory.measure.Substring(0,10);
+            oldInventory.measure = inventory.measure.Substring(0, Math.Min(inventory.measure.Length, 10));
             oldInventory.date_supply = inventory.date_supply;
             oldInventory.date_expiration = inventory.date_expiration;
             oldInventory.price_purchase = inventory.price_purchase;
